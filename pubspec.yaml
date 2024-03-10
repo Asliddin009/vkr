@@ -1,0 +1,38 @@
+name: client_vkr
+description: "A new Flutter project."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.1 <4.0.0"
+
+dependencies:
+  dio: ^5.2.1+1
+  injectable: ^1.5.3
+  get_it: ^7.6.0
+  hydrated_bloc: ^9.1.1
+  flutter_bloc: ^8.1.3
+  path_provider: ^2.0.15
+  injectable_generator: ^1.5.4
+  freezed: ^2.4.1
+  freezed_annotation: ^2.4.1
+  json_serializable: ^6.5.1
+  google_fonts: ^5.1.0
+  pretty_dio_logger: ^1.3.1
+  flutter_svg: ^2.0.9
+
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.5
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/svg_image/
+    - assets/images/
