@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -8,13 +10,13 @@ part 'user_entity.g.dart';
 @freezed
 class UserEntity with _$UserEntity {
   const factory UserEntity({
-    required String email,
-    required String username,
-    required String id,
-    String? accessToken,
-    String? refreshToken,
-    // ignore: invalid_annotation_target, deprecated_member_use
-    @JsonKey(ignore: true) AsyncSnapshot? userState,
+    @JsonKey(name: 'UserType') required String userType,
+    @JsonKey(name: 'Token') String? token,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Signature') String? signature,
+    @JsonKey(name: 'IsTeacher') bool? isTeacher,
+    @JsonKey(name: 'ExpirateTime') String? expirateTime,
+    @JsonKey(includeFromJson: false) AsyncSnapshot? userState,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

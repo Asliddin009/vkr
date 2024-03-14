@@ -8,13 +8,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("MainScreen"),
-          actions: const [],
-        ),
-        body: const Center(
-          child: Text('das'),
-        ));
+    return const Scaffold(
+      body: Center(child: Text('Профиль для студентов')),
+    );
   }
 }

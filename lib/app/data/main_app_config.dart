@@ -6,7 +6,7 @@ import '../domain/app_config.dart';
 @prod
 class ProdAppConfig implements AppConfig {
   @override
-  String get baseUrl => "http://10.0.2.2/";
+  String get baseUrl => "http://10.0.2.2:8001";
 
   @override
   String get host => Environment.prod;
@@ -16,7 +16,7 @@ class ProdAppConfig implements AppConfig {
 @dev
 class DevAppConfig implements AppConfig {
   @override
-  String get baseUrl => "localhost";
+  String get baseUrl => "http://0.0.0.0:8001";
 
   @override
   String get host => Environment.dev;
@@ -26,7 +26,7 @@ class DevAppConfig implements AppConfig {
 @test
 class TestAppConfig implements AppConfig {
   @override
-  String get baseUrl => "_";
+  String get baseUrl => "http://10.0.2.2";
 
   @override
   String get host => Environment.test;

@@ -1,13 +1,13 @@
 import 'package:client_vkr/app/di/init_di.dart';
 import 'package:client_vkr/app/domain/app_api.dart';
-import 'package:client_vkr/feature/auth/domain/auth_state/auth_cubit.dart';
+import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptor extends QueuedInterceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final accessToken = locator.get<AuthCubit>().state.whenOrNull(
-          authorized: (userEntity) => userEntity.accessToken,
+          authorized: (userEntity) => userEntity.token,
         );
     if (accessToken == null) {
       super.onRequest(options, handler);
@@ -22,7 +22,6 @@ class AuthInterceptor extends QueuedInterceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
       try {
-        await locator.get<AuthCubit>().refreshToken();
         final request = await locator.get<AppApi>().fetch(err.requestOptions);
         return handler.resolve(request);
       } catch (_) {

@@ -22,24 +22,6 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> getProfile() {
-    try {
-      return dio.get("/auth/user");
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> passwordUpdate(
-      {required String oldPassword, required String newPassword}) {
-    return dio.put("/auth/user", queryParameters: {
-      "oldPassword": oldPassword,
-      "newPassword": newPassword,
-    });
-  }
-
-  @override
   Future<Response> refreshToken({String? refreshToken}) {
     try {
       return dio.post("/auth/token/$refreshToken");
@@ -50,37 +32,16 @@ class DioAppApi implements AppApi {
 
   @override
   Future<Response> signIn(
-      {required String password, required String username}) {
+      {required String password, required String login}) async {
     try {
-      return dio.post("/auth/token",
-          data: {"username": username, "password": password});
+      final response = await dio.post(
+        "/api/account/auth",
+        data: {"login": login, "password": password},
+      );
+      return response;
     } catch (_) {
       rethrow;
     }
-  }
-
-  @override
-  Future<Response> signUp(
-      {required String password,
-      required String username,
-      required String email}) {
-    try {
-      return dio.put("/auth/token", data: {
-        "username": username,
-        "password": password,
-        "email": email,
-      });
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> userUpdate({String? username, String? email}) {
-    return dio.post("/auth/user", data: {
-      "username": username,
-      "email": email,
-    });
   }
 
   @override

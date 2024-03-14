@@ -12,7 +12,7 @@ part of 'user_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
   return _UserEntity.fromJson(json);
@@ -20,12 +20,19 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserEntity {
-  String get email => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-  String? get accessToken => throw _privateConstructorUsedError;
-  String? get refreshToken => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  @JsonKey(name: 'UserType')
+  String get userType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Token')
+  String? get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Signature')
+  String? get signature => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsTeacher')
+  bool? get isTeacher => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ExpirateTime')
+  String? get expirateTime => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false)
   AsyncSnapshot<dynamic>? get userState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,12 +48,13 @@ abstract class $UserEntityCopyWith<$Res> {
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
   $Res call(
-      {String email,
-      String username,
-      String id,
-      String? accessToken,
-      String? refreshToken,
-      @JsonKey(ignore: true) AsyncSnapshot<dynamic>? userState});
+      {@JsonKey(name: 'UserType') String userType,
+      @JsonKey(name: 'Token') String? token,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Signature') String? signature,
+      @JsonKey(name: 'IsTeacher') bool? isTeacher,
+      @JsonKey(name: 'ExpirateTime') String? expirateTime,
+      @JsonKey(includeFromJson: false) AsyncSnapshot<dynamic>? userState});
 }
 
 /// @nodoc
@@ -62,33 +70,38 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? username = null,
-    Object? id = null,
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? userType = null,
+    Object? token = freezed,
+    Object? name = freezed,
+    Object? signature = freezed,
+    Object? isTeacher = freezed,
+    Object? expirateTime = freezed,
     Object? userState = freezed,
   }) {
     return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      userType: null == userType
+          ? _value.userType
+          : userType // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      accessToken: freezed == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshToken: freezed == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signature: freezed == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isTeacher: freezed == isTeacher
+          ? _value.isTeacher
+          : isTeacher // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      expirateTime: freezed == expirateTime
+          ? _value.expirateTime
+          : expirateTime // ignore: cast_nullable_to_non_nullable
               as String?,
       userState: freezed == userState
           ? _value.userState
@@ -107,12 +120,13 @@ abstract class _$$UserEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email,
-      String username,
-      String id,
-      String? accessToken,
-      String? refreshToken,
-      @JsonKey(ignore: true) AsyncSnapshot<dynamic>? userState});
+      {@JsonKey(name: 'UserType') String userType,
+      @JsonKey(name: 'Token') String? token,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Signature') String? signature,
+      @JsonKey(name: 'IsTeacher') bool? isTeacher,
+      @JsonKey(name: 'ExpirateTime') String? expirateTime,
+      @JsonKey(includeFromJson: false) AsyncSnapshot<dynamic>? userState});
 }
 
 /// @nodoc
@@ -126,33 +140,38 @@ class __$$UserEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? username = null,
-    Object? id = null,
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? userType = null,
+    Object? token = freezed,
+    Object? name = freezed,
+    Object? signature = freezed,
+    Object? isTeacher = freezed,
+    Object? expirateTime = freezed,
     Object? userState = freezed,
   }) {
     return _then(_$UserEntityImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      userType: null == userType
+          ? _value.userType
+          : userType // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      accessToken: freezed == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshToken: freezed == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signature: freezed == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isTeacher: freezed == isTeacher
+          ? _value.isTeacher
+          : isTeacher // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      expirateTime: freezed == expirateTime
+          ? _value.expirateTime
+          : expirateTime // ignore: cast_nullable_to_non_nullable
               as String?,
       userState: freezed == userState
           ? _value.userState
@@ -166,33 +185,42 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserEntityImpl implements _UserEntity {
   const _$UserEntityImpl(
-      {required this.email,
-      required this.username,
-      required this.id,
-      this.accessToken,
-      this.refreshToken,
-      @JsonKey(ignore: true) this.userState});
+      {@JsonKey(name: 'UserType') required this.userType,
+      @JsonKey(name: 'Token') this.token,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'Signature') this.signature,
+      @JsonKey(name: 'IsTeacher') this.isTeacher,
+      @JsonKey(name: 'ExpirateTime') this.expirateTime,
+      @JsonKey(includeFromJson: false) this.userState});
 
   factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserEntityImplFromJson(json);
 
   @override
-  final String email;
+  @JsonKey(name: 'UserType')
+  final String userType;
   @override
-  final String username;
+  @JsonKey(name: 'Token')
+  final String? token;
   @override
-  final String id;
+  @JsonKey(name: 'Name')
+  final String? name;
   @override
-  final String? accessToken;
+  @JsonKey(name: 'Signature')
+  final String? signature;
   @override
-  final String? refreshToken;
+  @JsonKey(name: 'IsTeacher')
+  final bool? isTeacher;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(name: 'ExpirateTime')
+  final String? expirateTime;
+  @override
+  @JsonKey(includeFromJson: false)
   final AsyncSnapshot<dynamic>? userState;
 
   @override
   String toString() {
-    return 'UserEntity(email: $email, username: $username, id: $id, accessToken: $accessToken, refreshToken: $refreshToken, userState: $userState)';
+    return 'UserEntity(userType: $userType, token: $token, name: $name, signature: $signature, isTeacher: $isTeacher, expirateTime: $expirateTime, userState: $userState)';
   }
 
   @override
@@ -200,22 +228,24 @@ class _$UserEntityImpl implements _UserEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserEntityImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
+            (identical(other.userType, userType) ||
+                other.userType == userType) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.signature, signature) ||
+                other.signature == signature) &&
+            (identical(other.isTeacher, isTeacher) ||
+                other.isTeacher == isTeacher) &&
+            (identical(other.expirateTime, expirateTime) ||
+                other.expirateTime == expirateTime) &&
             (identical(other.userState, userState) ||
                 other.userState == userState));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, username, id, accessToken, refreshToken, userState);
+  int get hashCode => Object.hash(runtimeType, userType, token, name, signature,
+      isTeacher, expirateTime, userState);
 
   @JsonKey(ignore: true)
   @override
@@ -233,29 +263,38 @@ class _$UserEntityImpl implements _UserEntity {
 
 abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
-          {required final String email,
-          required final String username,
-          required final String id,
-          final String? accessToken,
-          final String? refreshToken,
-          @JsonKey(ignore: true) final AsyncSnapshot<dynamic>? userState}) =
-      _$UserEntityImpl;
+      {@JsonKey(name: 'UserType') required final String userType,
+      @JsonKey(name: 'Token') final String? token,
+      @JsonKey(name: 'Name') final String? name,
+      @JsonKey(name: 'Signature') final String? signature,
+      @JsonKey(name: 'IsTeacher') final bool? isTeacher,
+      @JsonKey(name: 'ExpirateTime') final String? expirateTime,
+      @JsonKey(includeFromJson: false)
+      final AsyncSnapshot<dynamic>? userState}) = _$UserEntityImpl;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$UserEntityImpl.fromJson;
 
   @override
-  String get email;
+  @JsonKey(name: 'UserType')
+  String get userType;
   @override
-  String get username;
+  @JsonKey(name: 'Token')
+  String? get token;
   @override
-  String get id;
+  @JsonKey(name: 'Name')
+  String? get name;
   @override
-  String? get accessToken;
+  @JsonKey(name: 'Signature')
+  String? get signature;
   @override
-  String? get refreshToken;
+  @JsonKey(name: 'IsTeacher')
+  bool? get isTeacher;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(name: 'ExpirateTime')
+  String? get expirateTime;
+  @override
+  @JsonKey(includeFromJson: false)
   AsyncSnapshot<dynamic>? get userState;
   @override
   @JsonKey(ignore: true)

@@ -1,6 +1,7 @@
+import 'package:client_vkr/feature/lessons/ui/lesson_screen.dart';
 import 'package:flutter/material.dart';
 import '../../feature/auth/ui/components/auth_builder.dart';
-import '../../feature/auth/ui/login_screen.dart';
+import '../../feature/auth/ui/login_screen_layout.dart';
 import '../../feature/main/ui/main_screen.dart';
 import 'app_loaded.dart';
 
@@ -11,7 +12,11 @@ class RootScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthBuilder(
         isWaiting: (context) => const AppLoader(),
-        isNotAuthorized: (context) => LoginScreen(),
-        isAuthorized: (context, value, child) => MainScreen(userEntity: value));
+        isNotAuthorized: (context) => const LoginScreen(),
+        isAuthorized: (context, userEntity, child) => userEntity.isTeacher
+            ? LessonScreen(
+                userEntity: userEntity,
+              )
+            : MainScreen(userEntity: userEntity));
   }
 }

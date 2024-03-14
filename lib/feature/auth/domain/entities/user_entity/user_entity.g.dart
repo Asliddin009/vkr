@@ -8,18 +8,20 @@ part of 'user_entity.dart';
 
 _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
     _$UserEntityImpl(
-      email: json['email'] as String,
-      username: json['username'] as String,
-      id: json['id'] as String,
-      accessToken: json['accessToken'] as String?,
-      refreshToken: json['refreshToken'] as String?,
+      userType: json['UserType'] as String,
+      token: json['Token'] as String?,
+      name: json['Name'] as String?,
+      signature: json['Signature'] as String?,
+      isTeacher: json['IsTeacher'] as bool?,
+      expirateTime: json['ExpirateTime'] as String?,
     );
 
 Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'username': instance.username,
-      'id': instance.id,
-      'accessToken': instance.accessToken,
-      'refreshToken': instance.refreshToken,
+      'UserType': instance.userType,
+      'Token': instance.token,
+      'Name': instance.name,
+      'Signature': instance.signature,
+      'IsTeacher': instance.isTeacher,
+      'ExpirateTime': instance.expirateTime,
     };
