@@ -31,7 +31,6 @@ class _AppTextFieldState extends State<AppTextField> {
         autofocus: widget.autofocus,
         autofillHints: widget.autofillHints,
         obscureText: _passwordVisible,
-        validator: emptyValidator,
         maxLines: 1,
         controller: widget.controller,
         decoration: InputDecoration(
@@ -59,12 +58,5 @@ class _AppTextFieldState extends State<AppTextField> {
   void initState() {
     super.initState();
     _passwordVisible = widget.obscureText;
-  }
-
-  String? emptyValidator(String? value) {
-    if (value?.isEmpty == true) {
-      return "Обязательное поле";
-    }
-    return null;
   }
 }

@@ -1,4 +1,16 @@
+import 'dart:developer';
+
 abstract class Utils {
+  ///return lessonId and qrCodeId
+  static (String lessonId, String qrCodeId) getIdFromUrl(String url) {
+    RegExp regExp = RegExp('lessonId=(\\d+)&qrCodeId=(\\d+)');
+    Match match = regExp.firstMatch(url) as Match;
+    String? lessonId = match.group(1);
+    String? qrCodeId = match.group(2);
+    log('lessonId: $lessonId, qrCodeId: $qrCodeId');
+    return (lessonId ?? " ", qrCodeId ?? " ");
+  }
+
   static String getStartDate() {
     int weekday = DateTime.now().weekday - 1;
     return convertDateTimeToString(DateTime(DateTime.now().year,

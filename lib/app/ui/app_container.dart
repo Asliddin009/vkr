@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppContainer extends StatelessWidget {
   const AppContainer(
@@ -9,6 +8,7 @@ class AppContainer extends StatelessWidget {
       this.child,
       this.height,
       this.padding,
+      this.margin,
       this.width});
 
   final Color? color;
@@ -17,10 +17,11 @@ class AppContainer extends StatelessWidget {
   final double? width;
   final Widget? child;
   final EdgeInsets? padding;
+  final EdgeInsets? margin;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(9),
+      margin: margin ?? const EdgeInsets.all(9),
       padding: padding ?? const EdgeInsets.all(6),
       width: width ?? MediaQuery.of(context).size.width,
       height: height ?? MediaQuery.of(context).size.height,

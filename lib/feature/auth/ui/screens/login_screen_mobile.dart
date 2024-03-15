@@ -54,6 +54,12 @@ class LoginScreenMobile extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: AppTextButton(
                         onPressed: () {
+                          if (controllerLogin.text == '' ||
+                              controllerPassword.text == '') {
+                            AppSnackBar.showSnackBarWithMessage(
+                                context, 'Надо ввести пароль и логин');
+                            return;
+                          }
                           TextInput.finishAutofillContext();
                           if (formKey.currentState?.validate() == true) {
                             _onTapToSignIn(context.read<AuthCubit>());

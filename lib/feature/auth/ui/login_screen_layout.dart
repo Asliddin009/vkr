@@ -1,3 +1,4 @@
+import 'package:client_vkr/app/ui/app_snack_bar.dart';
 import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,9 +16,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return switch (MediaQuery.of(context).size.width) {
-      final width when width > 700 => LoginScreenWeb(),
-      _ => LoginScreenMobile()
-    };
+    return LoginScreenMobile();
   }
 }

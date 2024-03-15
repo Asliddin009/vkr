@@ -8,8 +8,14 @@ class MockAuthRepository implements AuthRepository {
   @override
   Future signIn({required String password, required String username}) {
     return Future.delayed(const Duration(seconds: 1), () {
+      if (username == 'test2') {
+        return const UserEntity(
+            userType: 'студент',
+            name: "Сайдалиев Аслиддин Джамалидинович",
+            isTeacher: false);
+      }
       return const UserEntity(
-          userType: 'test',
+          userType: 'преподаватель',
           name: 'Шицелов Анатолий Вячеславович',
           isTeacher: true);
     });

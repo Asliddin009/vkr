@@ -9,15 +9,18 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../feature/auth/data/mock_auth_repository.dart' as _i6;
-import '../../feature/auth/data/network_auth_repository.dart' as _i12;
-import '../../feature/auth/domain/auth_bloc/auth_cubit.dart' as _i11;
+import '../../feature/auth/data/network_auth_repository.dart' as _i14;
+import '../../feature/auth/domain/auth_bloc/auth_cubit.dart' as _i13;
 import '../../feature/auth/domain/auth_repository.dart' as _i5;
 import '../../feature/lessons/data/mock_lessons_repo.dart' as _i8;
-import '../../feature/lessons/domain/cubit/lesson_cubit.dart' as _i13;
+import '../../feature/lessons/domain/cubit/lesson_cubit.dart' as _i15;
 import '../../feature/lessons/domain/lessons_repo.dart' as _i7;
-import '../data/dio_app_api.dart' as _i10;
+import '../../feature/qr_code_scanner/data/mock_qr_code_repo.dart' as _i10;
+import '../../feature/qr_code_scanner/domain/cubit/qr_code_cubit.dart' as _i16;
+import '../../feature/qr_code_scanner/domain/qe_code_repo.dart' as _i9;
+import '../data/dio_app_api.dart' as _i12;
 import '../data/main_app_config.dart' as _i4;
-import '../domain/app_api.dart' as _i9;
+import '../domain/app_api.dart' as _i11;
 import '../domain/app_config.dart' as _i3;
 
 const String _prod = 'prod';
@@ -56,15 +59,20 @@ _i1.GetIt $initGetIt(
     () => _i8.MockLessonsRepo(),
     registerFor: {_test},
   );
-  gh.singleton<_i9.AppApi>(_i10.DioAppApi(get<_i3.AppConfig>()));
-  gh.singleton<_i11.AuthCubit>(_i11.AuthCubit(get<_i5.AuthRepository>()));
+  gh.factory<_i9.QrCodeRepo>(
+    () => _i10.MockQrCodeRepo(),
+    registerFor: {_test},
+  );
+  gh.singleton<_i11.AppApi>(_i12.DioAppApi(get<_i3.AppConfig>()));
+  gh.singleton<_i13.AuthCubit>(_i13.AuthCubit(get<_i5.AuthRepository>()));
   gh.factory<_i5.AuthRepository>(
-    () => _i12.NetworkAuthRepository(get<_i9.AppApi>()),
+    () => _i14.NetworkAuthRepository(get<_i11.AppApi>()),
     registerFor: {_prod},
   );
-  gh.singleton<_i13.LessonCubit>(_i13.LessonCubit(
+  gh.singleton<_i15.LessonCubit>(_i15.LessonCubit(
     get<_i7.LessonsRepo>(),
-    get<_i11.AuthCubit>(),
+    get<_i13.AuthCubit>(),
   ));
+  gh.singleton<_i16.QrCodeCubit>(_i16.QrCodeCubit(get<_i9.QrCodeRepo>()));
   return get;
 }

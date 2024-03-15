@@ -81,22 +81,12 @@ class MockLessonsRepo implements LessonsRepo {
   }
 
   @override
-  Future<String> sendMark(int lessonId, int qrCodeId) {
-    return Future.delayed(const Duration(seconds: 1), () {
-      if (qrCodeId == 2) return 'Вы не успели';
-      return 'Вы успешно отметились';
-    });
-  }
-
-  @override
   Stream finishListenQrCode(int lessonId) {
-    // TODO: implement finishListenQrCode
     throw UnimplementedError();
   }
 
   @override
   Stream<String> startListenQrCode(int lessonId) {
-    // TODO: implement startListenQrCode
     throw UnimplementedError();
   }
 }

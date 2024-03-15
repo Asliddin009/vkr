@@ -14,7 +14,4 @@ abstract class LessonsRepo {
 
   // 2) Вариант
   Future<String> getUrl(int lessonId);
-
-  ///запрос чтобы отметиться
-  Future<String> sendMark(int lessonId, int qrCodeId);
 }
