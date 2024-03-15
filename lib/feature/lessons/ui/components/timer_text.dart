@@ -27,6 +27,9 @@ class _TimerTextWidgetState extends State<TimerTextWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('до обновления Qr-coda $time секунд');
+    return Text(
+      'до обновления Qr-coda $time секунд',
+      style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 15),
+    );
   }
 }

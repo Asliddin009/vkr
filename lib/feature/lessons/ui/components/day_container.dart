@@ -27,6 +27,7 @@ class DayContainer extends StatelessWidget {
         ),
         SizedBox(
           height: height,
+          width: 500,
           child: listLessons.isNotEmpty
               ? ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -47,7 +48,7 @@ class DayContainer extends StatelessWidget {
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
-        )
+        ),
       ],
     );
   }

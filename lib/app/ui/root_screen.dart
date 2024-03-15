@@ -12,7 +12,7 @@ class RootScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthBuilder(
         isWaiting: (context) => const AppLoader(),
-        isNotAuthorized: (context) => const LoginScreen(),
+        isNotAuthorized: (context) => LoginScreen(),
         isAuthorized: (context, userEntity, child) => userEntity.isTeacher
             ? LessonScreen(
                 userEntity: userEntity,

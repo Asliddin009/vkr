@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_single_cascade_in_expression_statements
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +48,6 @@ abstract class BaseSnackBar {
   }) async {
     if (flagShowSnackBar) {
       flagShowSnackBar = false;
-      // ignore: avoid_single_cascade_in_expression_statements
       Flushbar(
         flushbarPosition: FlushbarPosition.TOP,
         message: title,
@@ -56,6 +57,7 @@ abstract class BaseSnackBar {
           child: icon,
         ),
         margin: const EdgeInsets.all(20),
+        maxWidth: 500,
         padding: const EdgeInsets.only(left: 40, right: 20),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         duration: const Duration(seconds: 2),
