@@ -19,6 +19,7 @@ mixin _$DetailLessonState {
   AsyncSnapshot<dynamic> get asyncSnapshot =>
       throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
+  bool get isFullQrCode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailLessonStateCopyWith<DetailLessonState> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $DetailLessonStateCopyWith<$Res> {
           DetailLessonState value, $Res Function(DetailLessonState) then) =
       _$DetailLessonStateCopyWithImpl<$Res, DetailLessonState>;
   @useResult
-  $Res call({AsyncSnapshot<dynamic> asyncSnapshot, String url});
+  $Res call(
+      {AsyncSnapshot<dynamic> asyncSnapshot, String url, bool isFullQrCode});
 }
 
 /// @nodoc
@@ -49,6 +51,7 @@ class _$DetailLessonStateCopyWithImpl<$Res, $Val extends DetailLessonState>
   $Res call({
     Object? asyncSnapshot = null,
     Object? url = null,
+    Object? isFullQrCode = null,
   }) {
     return _then(_value.copyWith(
       asyncSnapshot: null == asyncSnapshot
@@ -59,6 +62,10 @@ class _$DetailLessonStateCopyWithImpl<$Res, $Val extends DetailLessonState>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      isFullQrCode: null == isFullQrCode
+          ? _value.isFullQrCode
+          : isFullQrCode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -71,7 +78,8 @@ abstract class _$$DetailLessonStateImplCopyWith<$Res>
       __$$DetailLessonStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AsyncSnapshot<dynamic> asyncSnapshot, String url});
+  $Res call(
+      {AsyncSnapshot<dynamic> asyncSnapshot, String url, bool isFullQrCode});
 }
 
 /// @nodoc
@@ -87,6 +95,7 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
   $Res call({
     Object? asyncSnapshot = null,
     Object? url = null,
+    Object? isFullQrCode = null,
   }) {
     return _then(_$DetailLessonStateImpl(
       asyncSnapshot: null == asyncSnapshot
@@ -97,6 +106,10 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      isFullQrCode: null == isFullQrCode
+          ? _value.isFullQrCode
+          : isFullQrCode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -105,7 +118,9 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
 
 class _$DetailLessonStateImpl implements _DetailLessonState {
   const _$DetailLessonStateImpl(
-      {this.asyncSnapshot = const AsyncSnapshot.nothing(), this.url = ''});
+      {this.asyncSnapshot = const AsyncSnapshot.nothing(),
+      this.url = '',
+      this.isFullQrCode = false});
 
   @override
   @JsonKey()
@@ -113,10 +128,13 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
   @override
   @JsonKey()
   final String url;
+  @override
+  @JsonKey()
+  final bool isFullQrCode;
 
   @override
   String toString() {
-    return 'DetailLessonState(asyncSnapshot: $asyncSnapshot, url: $url)';
+    return 'DetailLessonState(asyncSnapshot: $asyncSnapshot, url: $url, isFullQrCode: $isFullQrCode)';
   }
 
   @override
@@ -126,11 +144,14 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
             other is _$DetailLessonStateImpl &&
             (identical(other.asyncSnapshot, asyncSnapshot) ||
                 other.asyncSnapshot == asyncSnapshot) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.isFullQrCode, isFullQrCode) ||
+                other.isFullQrCode == isFullQrCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, asyncSnapshot, url);
+  int get hashCode =>
+      Object.hash(runtimeType, asyncSnapshot, url, isFullQrCode);
 
   @JsonKey(ignore: true)
   @override
@@ -143,12 +164,15 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
 abstract class _DetailLessonState implements DetailLessonState {
   const factory _DetailLessonState(
       {final AsyncSnapshot<dynamic> asyncSnapshot,
-      final String url}) = _$DetailLessonStateImpl;
+      final String url,
+      final bool isFullQrCode}) = _$DetailLessonStateImpl;
 
   @override
   AsyncSnapshot<dynamic> get asyncSnapshot;
   @override
   String get url;
+  @override
+  bool get isFullQrCode;
   @override
   @JsonKey(ignore: true)
   _$$DetailLessonStateImplCopyWith<_$DetailLessonStateImpl> get copyWith =>

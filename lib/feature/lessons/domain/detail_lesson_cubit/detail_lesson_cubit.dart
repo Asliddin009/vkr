@@ -32,11 +32,16 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
         asyncSnapshot: AsyncSnapshot.nothing(), url: ''));
   }
 
+  void openQrCodeFull() {
+    final flag = !state.isFullQrCode;
+    emit(state.copyWith(isFullQrCode: flag));
+  }
+
   void _getQrCodeUrl() async {
-    emit(const DetailLessonState(asyncSnapshot: AsyncSnapshot.waiting()));
+    emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
     final url = await repo.getUrl(id);
     log('qr code обновился');
-    emit(DetailLessonState(
+    emit(state.copyWith(
         url: url,
         asyncSnapshot:
             const AsyncSnapshot.withData(ConnectionState.done, null)));
