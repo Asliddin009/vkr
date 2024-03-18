@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/lessons_repo.dart';
 import 'package:injectable/injectable.dart';
@@ -15,7 +16,7 @@ class MockLessonsRepo implements LessonsRepo {
           id: 1,
           name: "машинное обучение",
           group: ['1501б', '1101б'],
-          date: '13.03.2024',
+          date: '18.03.2024',
           startLesson: '16-25',
           endLesson: '17-45',
           kindOfWork: 'Практика',
@@ -25,7 +26,7 @@ class MockLessonsRepo implements LessonsRepo {
           id: 2,
           name: "Практикум по программной инженерии",
           group: ['1511б'],
-          date: '15.03.2024',
+          date: '19.03.2024',
           startLesson: '16-25',
           endLesson: '17-45',
           kindOfWork: 'Лекция',
@@ -35,7 +36,7 @@ class MockLessonsRepo implements LessonsRepo {
           id: 3,
           name: "Искусственные нейронные сети и обработка больших данных",
           group: ['1322м'],
-          date: '15.03.2024',
+          date: '20.03.2024',
           startLesson: '19-45',
           endLesson: '21-05',
           kindOfWork: 'Практика',
@@ -45,7 +46,7 @@ class MockLessonsRepo implements LessonsRepo {
           id: 4,
           name: "Практикум по программной инженерии",
           group: ['1511б'],
-          date: '16.03.2024',
+          date: '20.03.2024',
           startLesson: '8-15',
           endLesson: '9-35',
           kindOfWork: 'Лаборотрная работа',
@@ -81,12 +82,23 @@ class MockLessonsRepo implements LessonsRepo {
   }
 
   @override
-  Stream finishListenQrCode(int lessonId) {
-    throw UnimplementedError();
+  Future<String> addStudentInLesson(Map<String, dynamic> data) {
+    if (data.isEmpty) throw Exception('не получилось добавить');
+    return Future.delayed(
+        const Duration(seconds: 1), () => 'Студенты добавлены на пару');
   }
 
   @override
-  Stream<String> startListenQrCode(int lessonId) {
-    throw UnimplementedError();
+  Future<List<UserEntity>> getStudents(int lessonId) {
+    return Future.delayed(const Duration(seconds: 1), () {
+      return [
+        const UserEntity(name: 'Сайдалиев Аслиддин Джамалиддинович'),
+        const UserEntity(name: 'Громов Василий Валерьевич'),
+        const UserEntity(name: 'Куксин Иван Николаевич'),
+        const UserEntity(name: 'Рощупник Александр Владимирович'),
+        const UserEntity(name: 'Кулиева Айгуль Мубариз-Кызы'),
+        const UserEntity(name: 'Подбуртный Максим Сергеевич'),
+      ];
+    });
   }
 }

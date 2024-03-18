@@ -2,7 +2,7 @@ import 'package:client_vkr/app/di/init_di.dart';
 import 'package:client_vkr/app/ui/app_container.dart';
 import 'package:client_vkr/app/ui/app_text_button.dart';
 import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
-import 'package:client_vkr/feature/qr_code_scanner/ui/scanner_screen.dart';
+import 'package:client_vkr/feature/student/ui/scanner_screen.dart';
 import 'package:flutter/material.dart';
 import '../../auth/domain/entities/user_entity/user_entity.dart';
 
@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        userEntity.name ?? "test",
+                        userEntity.name,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),

@@ -1,7 +1,7 @@
 import 'package:client_vkr/app/ui/app_container.dart';
 import 'package:client_vkr/app/ui/app_loaded.dart';
 import 'package:client_vkr/app/ui/app_text_button.dart';
-import 'package:client_vkr/feature/qr_code_scanner/domain/cubit/qr_code_cubit.dart';
+import 'package:client_vkr/feature/student/domain/cubit/qr_code_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,8 +1,8 @@
 import 'package:client_vkr/feature/lessons/ui/lesson_screen.dart';
 import 'package:flutter/material.dart';
 import '../../feature/auth/ui/components/auth_builder.dart';
-import '../../feature/auth/ui/login_screen_layout.dart';
-import '../../feature/main_screen/ui/main_screen.dart';
+import '../../feature/auth/ui/login_screen.dart';
+import '../../feature/student/ui/main_screen_for_student.dart';
 import 'app_loaded.dart';
 
 class RootScreen extends StatelessWidget {

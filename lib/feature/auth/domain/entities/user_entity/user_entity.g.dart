@@ -8,9 +8,9 @@ part of 'user_entity.dart';
 
 _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
     _$UserEntityImpl(
-      userType: json['UserType'] as String,
+      userType: json['UserType'] as String?,
       token: json['Token'] as String?,
-      name: json['Name'] as String?,
+      name: json['Name'] as String,
       signature: json['Signature'] as String?,
       isTeacher: json['IsTeacher'] as bool?,
       expirateTime: json['ExpirateTime'] as String?,

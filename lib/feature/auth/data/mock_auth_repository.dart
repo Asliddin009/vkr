@@ -6,7 +6,8 @@ import 'package:injectable/injectable.dart';
 @test
 class MockAuthRepository implements AuthRepository {
   @override
-  Future signIn({required String password, required String username}) {
+  Future<UserEntity> signIn(
+      {required String password, required String username}) {
     return Future.delayed(const Duration(seconds: 1), () {
       if (username == 'test2') {
         return const UserEntity(
@@ -22,12 +23,19 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future getInfo() {
-    return Future.delayed(const Duration(seconds: 2), () {});
+  Future<UserEntity> getInfo() {
+    return Future.delayed(const Duration(seconds: 2), () {
+      return const UserEntity(
+          userType: 'студент',
+          name: "Сайдалиев Аслиддин Джамалидинович",
+          isTeacher: false);
+    });
   }
 
   @override
   Future logout() {
-    return Future.delayed(const Duration(seconds: 1), () {});
+    return Future.delayed(const Duration(seconds: 1), () {
+      //Delete Token
+    });
   }
 }

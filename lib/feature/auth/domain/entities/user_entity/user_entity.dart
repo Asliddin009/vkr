@@ -10,9 +10,9 @@ part 'user_entity.g.dart';
 @freezed
 class UserEntity with _$UserEntity {
   const factory UserEntity({
-    @JsonKey(name: 'UserType') required String userType,
+    @JsonKey(name: 'UserType') String? userType,
     @JsonKey(name: 'Token') String? token,
-    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Name') required String name,
     @JsonKey(name: 'Signature') String? signature,
     @JsonKey(name: 'IsTeacher') bool? isTeacher,
     @JsonKey(name: 'ExpirateTime') String? expirateTime,
@@ -21,4 +21,11 @@ class UserEntity with _$UserEntity {
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);
+}
+
+enum AttendanceStatus {
+  present, // отметился
+  absent, // не отметился
+  excused, // не был по уважительной причине
+  sick // болел
 }

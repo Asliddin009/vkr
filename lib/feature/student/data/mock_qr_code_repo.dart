@@ -1,4 +1,4 @@
-import 'package:client_vkr/feature/qr_code_scanner/domain/qe_code_repo.dart';
+import 'package:client_vkr/feature/student/domain/qe_code_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: QrCodeRepo)

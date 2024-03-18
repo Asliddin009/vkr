@@ -1,4 +1,4 @@
-import 'package:client_vkr/feature/lessons/ui/detail_lesson.dart';
+import 'package:client_vkr/feature/lessons/ui/detail_lesson/detail_lesson_screen.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
 import 'package:client_vkr/app/utils/utils.dart';
-import 'package:client_vkr/feature/qr_code_scanner/domain/qe_code_repo.dart';
+import 'package:client_vkr/feature/student/domain/qe_code_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

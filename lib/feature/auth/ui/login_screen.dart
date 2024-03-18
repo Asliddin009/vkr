@@ -1,13 +1,12 @@
 import 'package:client_vkr/app/ui/app_snack_bar.dart';
+import 'package:client_vkr/app/ui/app_text_button.dart';
+import 'package:client_vkr/app/ui/app_text_field.dart';
 import 'package:client_vkr/app/ui/constrained_box.dart';
 import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'components/app_text_button.dart';
-import 'components/app_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -64,6 +63,7 @@ class LoginScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: AppTextButton(
+                            width: 400,
                             onPressed: () {
                               if (controllerLogin.text == '' ||
                                   controllerPassword.text == '') {

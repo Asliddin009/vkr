@@ -38,7 +38,7 @@ class LessonDoneScreen extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        userEntity.name ?? "test",
+                        userEntity.name,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),

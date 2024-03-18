@@ -21,11 +21,11 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserEntity {
   @JsonKey(name: 'UserType')
-  String get userType => throw _privateConstructorUsedError;
+  String? get userType => throw _privateConstructorUsedError;
   @JsonKey(name: 'Token')
   String? get token => throw _privateConstructorUsedError;
   @JsonKey(name: 'Name')
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'Signature')
   String? get signature => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsTeacher')
@@ -48,9 +48,9 @@ abstract class $UserEntityCopyWith<$Res> {
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'UserType') String userType,
+      {@JsonKey(name: 'UserType') String? userType,
       @JsonKey(name: 'Token') String? token,
-      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Name') String name,
       @JsonKey(name: 'Signature') String? signature,
       @JsonKey(name: 'IsTeacher') bool? isTeacher,
       @JsonKey(name: 'ExpirateTime') String? expirateTime,
@@ -70,27 +70,27 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userType = null,
+    Object? userType = freezed,
     Object? token = freezed,
-    Object? name = freezed,
+    Object? name = null,
     Object? signature = freezed,
     Object? isTeacher = freezed,
     Object? expirateTime = freezed,
     Object? userState = freezed,
   }) {
     return _then(_value.copyWith(
-      userType: null == userType
+      userType: freezed == userType
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       signature: freezed == signature
           ? _value.signature
           : signature // ignore: cast_nullable_to_non_nullable
@@ -120,9 +120,9 @@ abstract class _$$UserEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'UserType') String userType,
+      {@JsonKey(name: 'UserType') String? userType,
       @JsonKey(name: 'Token') String? token,
-      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Name') String name,
       @JsonKey(name: 'Signature') String? signature,
       @JsonKey(name: 'IsTeacher') bool? isTeacher,
       @JsonKey(name: 'ExpirateTime') String? expirateTime,
@@ -140,27 +140,27 @@ class __$$UserEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userType = null,
+    Object? userType = freezed,
     Object? token = freezed,
-    Object? name = freezed,
+    Object? name = null,
     Object? signature = freezed,
     Object? isTeacher = freezed,
     Object? expirateTime = freezed,
     Object? userState = freezed,
   }) {
     return _then(_$UserEntityImpl(
-      userType: null == userType
+      userType: freezed == userType
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       signature: freezed == signature
           ? _value.signature
           : signature // ignore: cast_nullable_to_non_nullable
@@ -185,9 +185,9 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserEntityImpl implements _UserEntity {
   const _$UserEntityImpl(
-      {@JsonKey(name: 'UserType') required this.userType,
+      {@JsonKey(name: 'UserType') this.userType,
       @JsonKey(name: 'Token') this.token,
-      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'Name') required this.name,
       @JsonKey(name: 'Signature') this.signature,
       @JsonKey(name: 'IsTeacher') this.isTeacher,
       @JsonKey(name: 'ExpirateTime') this.expirateTime,
@@ -198,13 +198,13 @@ class _$UserEntityImpl implements _UserEntity {
 
   @override
   @JsonKey(name: 'UserType')
-  final String userType;
+  final String? userType;
   @override
   @JsonKey(name: 'Token')
   final String? token;
   @override
   @JsonKey(name: 'Name')
-  final String? name;
+  final String name;
   @override
   @JsonKey(name: 'Signature')
   final String? signature;
@@ -263,9 +263,9 @@ class _$UserEntityImpl implements _UserEntity {
 
 abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
-      {@JsonKey(name: 'UserType') required final String userType,
+      {@JsonKey(name: 'UserType') final String? userType,
       @JsonKey(name: 'Token') final String? token,
-      @JsonKey(name: 'Name') final String? name,
+      @JsonKey(name: 'Name') required final String name,
       @JsonKey(name: 'Signature') final String? signature,
       @JsonKey(name: 'IsTeacher') final bool? isTeacher,
       @JsonKey(name: 'ExpirateTime') final String? expirateTime,
@@ -277,13 +277,13 @@ abstract class _UserEntity implements UserEntity {
 
   @override
   @JsonKey(name: 'UserType')
-  String get userType;
+  String? get userType;
   @override
   @JsonKey(name: 'Token')
   String? get token;
   @override
   @JsonKey(name: 'Name')
-  String? get name;
+  String get name;
   @override
   @JsonKey(name: 'Signature')
   String? get signature;

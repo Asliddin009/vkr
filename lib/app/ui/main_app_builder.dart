@@ -1,5 +1,5 @@
 import 'package:client_vkr/feature/lessons/domain/cubit/lesson_cubit.dart';
-import 'package:client_vkr/feature/qr_code_scanner/domain/cubit/qr_code_cubit.dart';
+import 'package:client_vkr/feature/student/domain/cubit/qr_code_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:client_vkr/app/ui/root_screen.dart';
