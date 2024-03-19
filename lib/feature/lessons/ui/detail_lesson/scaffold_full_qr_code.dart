@@ -1,7 +1,7 @@
 import 'package:client_vkr/app/ui/app_container.dart';
 import 'package:client_vkr/app/ui/app_text_button.dart';
-import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
+import 'package:client_vkr/feature/lessons/ui/components/list_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
@@ -29,7 +29,7 @@ class ScaffoldFullQrCode extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: PrettyQrView.data(
-                  data: state.qrCodeData.url,
+                  data: state.url,
                 ),
               ),
             ),
@@ -40,7 +40,7 @@ class ScaffoldFullQrCode extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                          '${state.qrCodeData.countStudent} студентов отметились на паре'),
+                          '${state.lessonStudentsEntity?.makeCountStudent ?? 0} студентов отметились на паре'),
                       const SizedBox(
                         height: 10,
                       ),
@@ -49,9 +49,9 @@ class ScaffoldFullQrCode extends StatelessWidget {
                         child: AppContainer(
                           margin: const EdgeInsets.only(
                               top: 20, left: 40, right: 40, bottom: 30),
-                          color: Colors.blueAccent,
                           child: ListStudent(
-                            list: state.list,
+                            list: state.lessonStudentsEntity?.listStudent ?? [],
+                            context: context,
                           ),
                         ),
                       )
@@ -71,25 +71,6 @@ class ScaffoldFullQrCode extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ListStudent extends StatelessWidget {
-  const ListStudent({super.key, required this.list});
-  final List<UserEntity> list;
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: list.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Text(list[index].name);
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          height: 2,
-        );
-      },
     );
   }
 }

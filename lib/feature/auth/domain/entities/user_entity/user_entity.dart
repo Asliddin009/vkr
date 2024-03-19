@@ -16,6 +16,7 @@ class UserEntity with _$UserEntity {
     @JsonKey(name: 'Signature') String? signature,
     @JsonKey(name: 'IsTeacher') bool? isTeacher,
     @JsonKey(name: 'ExpirateTime') String? expirateTime,
+    @Default(AttendanceStatus.absent) AttendanceStatus attendanceStatus,
     @JsonKey(includeFromJson: false) AsyncSnapshot? userState,
   }) = _UserEntity;
 
@@ -24,8 +25,15 @@ class UserEntity with _$UserEntity {
 }
 
 enum AttendanceStatus {
-  present, // отметился
-  absent, // не отметился
-  excused, // не был по уважительной причине
-  sick // болел
+  /// отметился
+  present,
+
+  /// не отметился
+  absent,
+
+  /// не был по уважительной причине
+  excused,
+
+  /// болел
+  sick
 }

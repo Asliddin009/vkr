@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
+import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/lessons_repo.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,7 +11,7 @@ import 'package:injectable/injectable.dart';
 class MockLessonsRepo implements LessonsRepo {
   @override
   Future<List<LessonEntity>> getLessons(String? startDate, String? endDate) {
-    return Future.delayed(const Duration(seconds: 1), () {
+    return Future.delayed(const Duration(milliseconds: 100), () {
       return [
         const LessonEntity(
           id: 1,
@@ -58,7 +59,7 @@ class MockLessonsRepo implements LessonsRepo {
 
   @override
   Future<LessonEntity> getLesssonDetail(int id) {
-    return Future.delayed(const Duration(seconds: 2), () {
+    return Future.delayed(const Duration(milliseconds: 100), () {
       return const LessonEntity(
           id: 1,
           name: "машинное обучение",
@@ -76,7 +77,7 @@ class MockLessonsRepo implements LessonsRepo {
       'http://0.0.0.0:8001/api/qr/control/:qrcode/visit?lessonId=1&qrCodeId=4',
       'http://0.0.0.0:8001/api/qr/control/:qrcode/visit?lessonId=1&qrCodeId=5',
     ];
-    return Future.delayed(const Duration(seconds: 1), () {
+    return Future.delayed(const Duration(milliseconds: 100), () {
       return list[Random().nextInt(list.length)];
     });
   }
@@ -89,16 +90,25 @@ class MockLessonsRepo implements LessonsRepo {
   }
 
   @override
-  Future<List<UserEntity>> getStudents(int lessonId) {
-    return Future.delayed(const Duration(seconds: 1), () {
-      return [
-        const UserEntity(name: 'Сайдалиев Аслиддин Джамалиддинович'),
-        const UserEntity(name: 'Громов Василий Валерьевич'),
-        const UserEntity(name: 'Куксин Иван Николаевич'),
-        const UserEntity(name: 'Рощупник Александр Владимирович'),
-        const UserEntity(name: 'Кулиева Айгуль Мубариз-Кызы'),
-        const UserEntity(name: 'Подбуртный Максим Сергеевич'),
-      ];
+  Future<LessonStudentsEntity> getStudents(int lessonId) {
+    return Future.delayed(const Duration(milliseconds: 100), () {
+      return const LessonStudentsEntity(
+          makeCountStudent: 3,
+          totalCountStudent: 6,
+          listStudent: [
+            UserEntity(
+                name: 'Сайдалиев Аслиддин Джамалиддинович',
+                attendanceStatus: AttendanceStatus.present),
+            UserEntity(
+                name: 'Громов Василий Валерьевич',
+                attendanceStatus: AttendanceStatus.excused),
+            UserEntity(name: 'Куксин Иван Николаевич'),
+            UserEntity(name: 'Рощупник Александр Владимирович'),
+            UserEntity(name: 'Кулиева Айгуль Мубариз-Кызы'),
+            UserEntity(
+                name: 'Подбуртный Максим Сергеевич',
+                attendanceStatus: AttendanceStatus.sick),
+          ]);
     });
   }
 }

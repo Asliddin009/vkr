@@ -92,7 +92,7 @@ class ScaffoldDetailScreen extends StatelessWidget {
                           color: Colors.blueAccent.shade400,
                           size: 200.0,
                         )
-                      : state.qrCodeData.url == ''
+                      : state.url == ''
                           ? const SizedBox(
                               height: 200,
                               width: 200,
@@ -107,14 +107,14 @@ class ScaffoldDetailScreen extends StatelessWidget {
                                 height: 200,
                                 width: 200,
                                 child: PrettyQrView.data(
-                                  data: state.qrCodeData.url,
+                                  data: state.url,
                                 ),
                               ),
                             ),
                   const SizedBox(
                     height: 16,
                   ),
-                  state.qrCodeData.url == ''
+                  state.url == ''
                       ? const SizedBox()
                       : Text("до обновления Qr-coda ${state.timer} секунд")
                 ],

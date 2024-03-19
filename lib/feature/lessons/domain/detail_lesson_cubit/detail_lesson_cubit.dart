@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
-import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/qr_code_data.dart';
+import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/lessons_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +21,13 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
   void startListenQrCode() async {
     isWork = true;
     _getQrCodeUrl();
+    getLessonStudents();
+
     timerUpdate ??= Timer.periodic(const Duration(seconds: 1), (timer) {
       emit(state.copyWith(timer: state.timer - 1));
       if (state.timer == 0 && isWork == true) {
         _getQrCodeUrl();
+        getLessonStudents();
       }
     });
   }
@@ -32,8 +35,8 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
   void finishListenQrCode() async {
     isWork = false;
     emit(const DetailLessonState(
-        asyncSnapshot: AsyncSnapshot.nothing(),
-        qrCodeData: QrCodeData(url: '', countStudent: 0)));
+      asyncSnapshot: AsyncSnapshot.nothing(),
+    ));
   }
 
   void openQrCodeFull() {
@@ -41,18 +44,41 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     emit(state.copyWith(isFullQrCode: flag));
   }
 
+  void swapAttendanceStatus(List<UserEntity> list) {
+    emit(state.copyWith(
+        lessonStudentsEntity:
+            state.lessonStudentsEntity!.copyWith(listStudent: list)));
+  }
+
   void _getQrCodeUrl() async {
-    emit(state.copyWith(
-        asyncSnapshot: const AsyncSnapshot.waiting(),
-        qrCodeData:
-            QrCodeData(url: '', countStudent: state.qrCodeData.countStudent)));
-    final url = await repo.getUrl(id);
-    log('qr code обновился');
-    emit(state.copyWith(
-        timer: 5,
-        qrCodeData: QrCodeData(url: url, countStudent: 5),
-        asyncSnapshot:
-            const AsyncSnapshot.withData(ConnectionState.done, null)));
+    try {
+      emit(state.copyWith(
+          asyncSnapshot: const AsyncSnapshot.waiting(), url: state.url));
+      final url = await repo.getUrl(id);
+      log('qr code обновился');
+      emit(state.copyWith(
+          timer: 5,
+          url: url,
+          asyncSnapshot:
+              const AsyncSnapshot.withData(ConnectionState.done, null)));
+    } on Exception catch (e) {
+      log('ошибка в методе _getQrCodeUrl');
+      addError(e);
+    }
+  }
+
+  void getLessonStudents() async {
+    try {
+      emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
+      final lessonStudentsEntity = await repo.getStudents(id);
+      emit(state.copyWith(
+          lessonStudentsEntity: lessonStudentsEntity,
+          asyncSnapshot:
+              const AsyncSnapshot.withData(ConnectionState.done, null)));
+    } on Exception catch (e) {
+      log('ошибка в методе getLessonStudents');
+      addError(e);
+    }
   }
 
   @override

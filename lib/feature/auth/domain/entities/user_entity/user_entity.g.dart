@@ -14,6 +14,9 @@ _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
       signature: json['Signature'] as String?,
       isTeacher: json['IsTeacher'] as bool?,
       expirateTime: json['ExpirateTime'] as String?,
+      attendanceStatus: $enumDecodeNullable(
+              _$AttendanceStatusEnumMap, json['attendanceStatus']) ??
+          AttendanceStatus.absent,
     );
 
 Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
@@ -24,4 +27,12 @@ Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
       'Signature': instance.signature,
       'IsTeacher': instance.isTeacher,
       'ExpirateTime': instance.expirateTime,
+      'attendanceStatus': _$AttendanceStatusEnumMap[instance.attendanceStatus]!,
     };
+
+const _$AttendanceStatusEnumMap = {
+  AttendanceStatus.present: 'present',
+  AttendanceStatus.absent: 'absent',
+  AttendanceStatus.excused: 'excused',
+  AttendanceStatus.sick: 'sick',
+};

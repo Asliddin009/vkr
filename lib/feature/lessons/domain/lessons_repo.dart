@@ -1,5 +1,5 @@
-import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
+import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
 
 abstract class LessonsRepo {
   /// получаем пары с startDate до endDate
@@ -15,5 +15,5 @@ abstract class LessonsRepo {
   Future<String> addStudentInLesson(Map<String, dynamic> data);
 
   ///Получить студентов
-  Future<List<UserEntity>> getStudents(int lessonId);
+  Future<LessonStudentsEntity> getStudents(int lessonId);
 }

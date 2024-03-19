@@ -32,6 +32,7 @@ mixin _$UserEntity {
   bool? get isTeacher => throw _privateConstructorUsedError;
   @JsonKey(name: 'ExpirateTime')
   String? get expirateTime => throw _privateConstructorUsedError;
+  AttendanceStatus get attendanceStatus => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   AsyncSnapshot<dynamic>? get userState => throw _privateConstructorUsedError;
 
@@ -54,6 +55,7 @@ abstract class $UserEntityCopyWith<$Res> {
       @JsonKey(name: 'Signature') String? signature,
       @JsonKey(name: 'IsTeacher') bool? isTeacher,
       @JsonKey(name: 'ExpirateTime') String? expirateTime,
+      AttendanceStatus attendanceStatus,
       @JsonKey(includeFromJson: false) AsyncSnapshot<dynamic>? userState});
 }
 
@@ -76,6 +78,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? signature = freezed,
     Object? isTeacher = freezed,
     Object? expirateTime = freezed,
+    Object? attendanceStatus = null,
     Object? userState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -103,6 +106,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.expirateTime
           : expirateTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      attendanceStatus: null == attendanceStatus
+          ? _value.attendanceStatus
+          : attendanceStatus // ignore: cast_nullable_to_non_nullable
+              as AttendanceStatus,
       userState: freezed == userState
           ? _value.userState
           : userState // ignore: cast_nullable_to_non_nullable
@@ -126,6 +133,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       @JsonKey(name: 'Signature') String? signature,
       @JsonKey(name: 'IsTeacher') bool? isTeacher,
       @JsonKey(name: 'ExpirateTime') String? expirateTime,
+      AttendanceStatus attendanceStatus,
       @JsonKey(includeFromJson: false) AsyncSnapshot<dynamic>? userState});
 }
 
@@ -146,6 +154,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? signature = freezed,
     Object? isTeacher = freezed,
     Object? expirateTime = freezed,
+    Object? attendanceStatus = null,
     Object? userState = freezed,
   }) {
     return _then(_$UserEntityImpl(
@@ -173,6 +182,10 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.expirateTime
           : expirateTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      attendanceStatus: null == attendanceStatus
+          ? _value.attendanceStatus
+          : attendanceStatus // ignore: cast_nullable_to_non_nullable
+              as AttendanceStatus,
       userState: freezed == userState
           ? _value.userState
           : userState // ignore: cast_nullable_to_non_nullable
@@ -191,6 +204,7 @@ class _$UserEntityImpl implements _UserEntity {
       @JsonKey(name: 'Signature') this.signature,
       @JsonKey(name: 'IsTeacher') this.isTeacher,
       @JsonKey(name: 'ExpirateTime') this.expirateTime,
+      this.attendanceStatus = AttendanceStatus.absent,
       @JsonKey(includeFromJson: false) this.userState});
 
   factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -215,12 +229,15 @@ class _$UserEntityImpl implements _UserEntity {
   @JsonKey(name: 'ExpirateTime')
   final String? expirateTime;
   @override
+  @JsonKey()
+  final AttendanceStatus attendanceStatus;
+  @override
   @JsonKey(includeFromJson: false)
   final AsyncSnapshot<dynamic>? userState;
 
   @override
   String toString() {
-    return 'UserEntity(userType: $userType, token: $token, name: $name, signature: $signature, isTeacher: $isTeacher, expirateTime: $expirateTime, userState: $userState)';
+    return 'UserEntity(userType: $userType, token: $token, name: $name, signature: $signature, isTeacher: $isTeacher, expirateTime: $expirateTime, attendanceStatus: $attendanceStatus, userState: $userState)';
   }
 
   @override
@@ -238,6 +255,8 @@ class _$UserEntityImpl implements _UserEntity {
                 other.isTeacher == isTeacher) &&
             (identical(other.expirateTime, expirateTime) ||
                 other.expirateTime == expirateTime) &&
+            (identical(other.attendanceStatus, attendanceStatus) ||
+                other.attendanceStatus == attendanceStatus) &&
             (identical(other.userState, userState) ||
                 other.userState == userState));
   }
@@ -245,7 +264,7 @@ class _$UserEntityImpl implements _UserEntity {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userType, token, name, signature,
-      isTeacher, expirateTime, userState);
+      isTeacher, expirateTime, attendanceStatus, userState);
 
   @JsonKey(ignore: true)
   @override
@@ -269,6 +288,7 @@ abstract class _UserEntity implements UserEntity {
       @JsonKey(name: 'Signature') final String? signature,
       @JsonKey(name: 'IsTeacher') final bool? isTeacher,
       @JsonKey(name: 'ExpirateTime') final String? expirateTime,
+      final AttendanceStatus attendanceStatus,
       @JsonKey(includeFromJson: false)
       final AsyncSnapshot<dynamic>? userState}) = _$UserEntityImpl;
 
@@ -293,6 +313,8 @@ abstract class _UserEntity implements UserEntity {
   @override
   @JsonKey(name: 'ExpirateTime')
   String? get expirateTime;
+  @override
+  AttendanceStatus get attendanceStatus;
   @override
   @JsonKey(includeFromJson: false)
   AsyncSnapshot<dynamic>? get userState;
