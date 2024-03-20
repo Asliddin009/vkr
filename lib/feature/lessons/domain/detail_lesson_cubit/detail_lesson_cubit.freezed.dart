@@ -21,6 +21,7 @@ mixin _$DetailLessonState {
   String get url => throw _privateConstructorUsedError;
   bool get isFullQrCode => throw _privateConstructorUsedError;
   int get timer => throw _privateConstructorUsedError;
+  BodyState get bodyState => throw _privateConstructorUsedError;
   LessonStudentsEntity? get lessonStudentsEntity =>
       throw _privateConstructorUsedError;
 
@@ -40,6 +41,7 @@ abstract class $DetailLessonStateCopyWith<$Res> {
       String url,
       bool isFullQrCode,
       int timer,
+      BodyState bodyState,
       LessonStudentsEntity? lessonStudentsEntity});
 
   $LessonStudentsEntityCopyWith<$Res>? get lessonStudentsEntity;
@@ -62,6 +64,7 @@ class _$DetailLessonStateCopyWithImpl<$Res, $Val extends DetailLessonState>
     Object? url = null,
     Object? isFullQrCode = null,
     Object? timer = null,
+    Object? bodyState = null,
     Object? lessonStudentsEntity = freezed,
   }) {
     return _then(_value.copyWith(
@@ -81,6 +84,10 @@ class _$DetailLessonStateCopyWithImpl<$Res, $Val extends DetailLessonState>
           ? _value.timer
           : timer // ignore: cast_nullable_to_non_nullable
               as int,
+      bodyState: null == bodyState
+          ? _value.bodyState
+          : bodyState // ignore: cast_nullable_to_non_nullable
+              as BodyState,
       lessonStudentsEntity: freezed == lessonStudentsEntity
           ? _value.lessonStudentsEntity
           : lessonStudentsEntity // ignore: cast_nullable_to_non_nullable
@@ -115,6 +122,7 @@ abstract class _$$DetailLessonStateImplCopyWith<$Res>
       String url,
       bool isFullQrCode,
       int timer,
+      BodyState bodyState,
       LessonStudentsEntity? lessonStudentsEntity});
 
   @override
@@ -136,6 +144,7 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
     Object? url = null,
     Object? isFullQrCode = null,
     Object? timer = null,
+    Object? bodyState = null,
     Object? lessonStudentsEntity = freezed,
   }) {
     return _then(_$DetailLessonStateImpl(
@@ -155,6 +164,10 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
           ? _value.timer
           : timer // ignore: cast_nullable_to_non_nullable
               as int,
+      bodyState: null == bodyState
+          ? _value.bodyState
+          : bodyState // ignore: cast_nullable_to_non_nullable
+              as BodyState,
       lessonStudentsEntity: freezed == lessonStudentsEntity
           ? _value.lessonStudentsEntity
           : lessonStudentsEntity // ignore: cast_nullable_to_non_nullable
@@ -171,6 +184,7 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
       this.url = '',
       this.isFullQrCode = false,
       this.timer = 5,
+      this.bodyState = BodyState.init,
       this.lessonStudentsEntity});
 
   @override
@@ -186,11 +200,14 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
   @JsonKey()
   final int timer;
   @override
+  @JsonKey()
+  final BodyState bodyState;
+  @override
   final LessonStudentsEntity? lessonStudentsEntity;
 
   @override
   String toString() {
-    return 'DetailLessonState(asyncSnapshot: $asyncSnapshot, url: $url, isFullQrCode: $isFullQrCode, timer: $timer, lessonStudentsEntity: $lessonStudentsEntity)';
+    return 'DetailLessonState(asyncSnapshot: $asyncSnapshot, url: $url, isFullQrCode: $isFullQrCode, timer: $timer, bodyState: $bodyState, lessonStudentsEntity: $lessonStudentsEntity)';
   }
 
   @override
@@ -204,13 +221,15 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
             (identical(other.isFullQrCode, isFullQrCode) ||
                 other.isFullQrCode == isFullQrCode) &&
             (identical(other.timer, timer) || other.timer == timer) &&
+            (identical(other.bodyState, bodyState) ||
+                other.bodyState == bodyState) &&
             (identical(other.lessonStudentsEntity, lessonStudentsEntity) ||
                 other.lessonStudentsEntity == lessonStudentsEntity));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, asyncSnapshot, url, isFullQrCode,
-      timer, lessonStudentsEntity);
+      timer, bodyState, lessonStudentsEntity);
 
   @JsonKey(ignore: true)
   @override
@@ -226,6 +245,7 @@ abstract class _DetailLessonState implements DetailLessonState {
           final String url,
           final bool isFullQrCode,
           final int timer,
+          final BodyState bodyState,
           final LessonStudentsEntity? lessonStudentsEntity}) =
       _$DetailLessonStateImpl;
 
@@ -237,6 +257,8 @@ abstract class _DetailLessonState implements DetailLessonState {
   bool get isFullQrCode;
   @override
   int get timer;
+  @override
+  BodyState get bodyState;
   @override
   LessonStudentsEntity? get lessonStudentsEntity;
   @override

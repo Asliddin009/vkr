@@ -27,7 +27,7 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
       emit(state.copyWith(timer: state.timer - 1));
       if (state.timer == 0 && isWork == true) {
         _getQrCodeUrl();
-        getLessonStudents();
+        //getLessonStudents();
       }
     });
   }
@@ -48,6 +48,10 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     emit(state.copyWith(
         lessonStudentsEntity:
             state.lessonStudentsEntity!.copyWith(listStudent: list)));
+  }
+
+  void emitNewBodyState(BodyState bodyState) {
+    emit(state.copyWith(bodyState: bodyState));
   }
 
   void _getQrCodeUrl() async {
@@ -78,6 +82,15 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     } on Exception catch (e) {
       log('ошибка в методе getLessonStudents');
       addError(e);
+    }
+  }
+
+  Future<bool> addUser(String name, String? group) async {
+    try {
+      await repo.addStudentInLesson({"Name": name, "Group": group ?? " "});
+      return true;
+    } on Exception catch (_) {
+      return false;
     }
   }
 

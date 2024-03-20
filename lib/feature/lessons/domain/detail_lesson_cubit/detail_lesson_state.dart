@@ -7,6 +7,14 @@ class DetailLessonState with _$DetailLessonState {
     @Default('') String url,
     @Default(false) bool isFullQrCode,
     @Default(5) int timer,
+    @Default(BodyState.init) BodyState bodyState,
     LessonStudentsEntity? lessonStudentsEntity,
   }) = _DetailLessonState;
+}
+
+enum BodyState {
+  qrCode,
+  list,
+  addUser,
+  init,
 }

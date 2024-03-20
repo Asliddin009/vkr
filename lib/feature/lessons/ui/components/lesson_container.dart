@@ -3,23 +3,23 @@ import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_
 import 'package:flutter/material.dart';
 
 class LessonContainer extends StatelessWidget {
-  const LessonContainer({
-    super.key,
-    required this.lessonEntity,
-  });
+  const LessonContainer(
+      {super.key, required this.lessonEntity, this.onTapActivate = true});
 
   final LessonEntity lessonEntity;
-
+  final bool onTapActivate;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailLessonScreen(
-                      lessonEntity: lessonEntity,
-                    )));
+        if (onTapActivate) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailLessonScreen(
+                        lessonEntity: lessonEntity,
+                      )));
+        }
       },
       child: Container(
         margin: const EdgeInsets.all(5),

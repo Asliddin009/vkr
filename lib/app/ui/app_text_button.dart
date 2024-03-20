@@ -5,14 +5,14 @@ class AppTextButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.text,
-    this.backgroundColor = Colors.blueAccent,
+    this.buttonStyle,
     this.height = 35,
     this.width = 350,
   });
 
   final VoidCallback onPressed;
   final String text;
-  final Color backgroundColor;
+  final ButtonStyle? buttonStyle;
   final double height;
   final double width;
   @override
@@ -21,6 +21,7 @@ class AppTextButton extends StatelessWidget {
       height: height,
       width: width,
       child: ElevatedButton(
+          style: buttonStyle,
           onPressed: onPressed,
           child: Text(
             text,

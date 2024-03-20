@@ -77,7 +77,7 @@ class MockLessonsRepo implements LessonsRepo {
       'http://0.0.0.0:8001/api/qr/control/:qrcode/visit?lessonId=1&qrCodeId=4',
       'http://0.0.0.0:8001/api/qr/control/:qrcode/visit?lessonId=1&qrCodeId=5',
     ];
-    return Future.delayed(const Duration(milliseconds: 100), () {
+    return Future.delayed(const Duration(seconds: 1), () {
       return list[Random().nextInt(list.length)];
     });
   }
@@ -91,7 +91,7 @@ class MockLessonsRepo implements LessonsRepo {
 
   @override
   Future<LessonStudentsEntity> getStudents(int lessonId) {
-    return Future.delayed(const Duration(milliseconds: 100), () {
+    return Future.delayed(const Duration(seconds: 1), () {
       return const LessonStudentsEntity(
           makeCountStudent: 3,
           totalCountStudent: 6,
@@ -103,6 +103,23 @@ class MockLessonsRepo implements LessonsRepo {
                 name: 'Громов Василий Валерьевич',
                 attendanceStatus: AttendanceStatus.excused),
             UserEntity(name: 'Куксин Иван Николаевич'),
+            UserEntity(name: 'Смирнов Никита Максимович'),
+            UserEntity(name: 'Васильева Екатерина Алексеевна'),
+            UserEntity(name: 'Петров Даниил Иванович'),
+            UserEntity(name: 'Иванова София Сергеевна'),
+            UserEntity(name: 'Соколов Алексей Владимирович'),
+            UserEntity(name: 'Попова Мария Васильевна'),
+            UserEntity(name: 'Лебедев Константин Михайлович'),
+            UserEntity(name: 'Козлов Виктор Петрович'),
+            UserEntity(name: 'Новикова Дарья Александровна'),
+            UserEntity(name: 'Морозов Роман Анатольевич'),
+            UserEntity(name: 'Петрова Вера Борисовна'),
+            UserEntity(name: 'Волков Антон Сергеевич'),
+            UserEntity(name: 'Соловьева Ирина Викторовна'),
+            UserEntity(name: 'Васильев Максим Андреевич'),
+            UserEntity(name: 'Зайцева Ольга Николаевна'),
+            UserEntity(name: 'Самедов Рамал Фейзула-Оглы'),
+            UserEntity(name: 'Самедов Роман Федерович'),
             UserEntity(name: 'Рощупник Александр Владимирович'),
             UserEntity(name: 'Кулиева Айгуль Мубариз-Кызы'),
             UserEntity(

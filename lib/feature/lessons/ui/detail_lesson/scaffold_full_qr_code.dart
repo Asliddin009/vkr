@@ -40,7 +40,7 @@ class ScaffoldFullQrCode extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                          '${state.lessonStudentsEntity?.makeCountStudent ?? 0} студентов отметились на паре'),
+                          '${state.lessonStudentsEntity?.makeCountStudent ?? 0} студентов из ${state.lessonStudentsEntity?.totalCountStudent} отметились на паре'),
                       const SizedBox(
                         height: 10,
                       ),
