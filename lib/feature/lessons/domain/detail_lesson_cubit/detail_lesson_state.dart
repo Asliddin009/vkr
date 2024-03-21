@@ -9,6 +9,7 @@ class DetailLessonState with _$DetailLessonState {
     @Default(5) int timer,
     @Default(BodyState.init) BodyState bodyState,
     LessonStudentsEntity? lessonStudentsEntity,
+    @Default([]) List<Widget> listStudentWidget,
   }) = _DetailLessonState;
 }
 

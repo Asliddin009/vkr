@@ -24,6 +24,7 @@ mixin _$DetailLessonState {
   BodyState get bodyState => throw _privateConstructorUsedError;
   LessonStudentsEntity? get lessonStudentsEntity =>
       throw _privateConstructorUsedError;
+  List<Widget> get listStudentWidget => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailLessonStateCopyWith<DetailLessonState> get copyWith =>
@@ -42,7 +43,8 @@ abstract class $DetailLessonStateCopyWith<$Res> {
       bool isFullQrCode,
       int timer,
       BodyState bodyState,
-      LessonStudentsEntity? lessonStudentsEntity});
+      LessonStudentsEntity? lessonStudentsEntity,
+      List<Widget> listStudentWidget});
 
   $LessonStudentsEntityCopyWith<$Res>? get lessonStudentsEntity;
 }
@@ -66,6 +68,7 @@ class _$DetailLessonStateCopyWithImpl<$Res, $Val extends DetailLessonState>
     Object? timer = null,
     Object? bodyState = null,
     Object? lessonStudentsEntity = freezed,
+    Object? listStudentWidget = null,
   }) {
     return _then(_value.copyWith(
       asyncSnapshot: null == asyncSnapshot
@@ -92,6 +95,10 @@ class _$DetailLessonStateCopyWithImpl<$Res, $Val extends DetailLessonState>
           ? _value.lessonStudentsEntity
           : lessonStudentsEntity // ignore: cast_nullable_to_non_nullable
               as LessonStudentsEntity?,
+      listStudentWidget: null == listStudentWidget
+          ? _value.listStudentWidget
+          : listStudentWidget // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
     ) as $Val);
   }
 
@@ -123,7 +130,8 @@ abstract class _$$DetailLessonStateImplCopyWith<$Res>
       bool isFullQrCode,
       int timer,
       BodyState bodyState,
-      LessonStudentsEntity? lessonStudentsEntity});
+      LessonStudentsEntity? lessonStudentsEntity,
+      List<Widget> listStudentWidget});
 
   @override
   $LessonStudentsEntityCopyWith<$Res>? get lessonStudentsEntity;
@@ -146,6 +154,7 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
     Object? timer = null,
     Object? bodyState = null,
     Object? lessonStudentsEntity = freezed,
+    Object? listStudentWidget = null,
   }) {
     return _then(_$DetailLessonStateImpl(
       asyncSnapshot: null == asyncSnapshot
@@ -172,6 +181,10 @@ class __$$DetailLessonStateImplCopyWithImpl<$Res>
           ? _value.lessonStudentsEntity
           : lessonStudentsEntity // ignore: cast_nullable_to_non_nullable
               as LessonStudentsEntity?,
+      listStudentWidget: null == listStudentWidget
+          ? _value._listStudentWidget
+          : listStudentWidget // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
     ));
   }
 }
@@ -185,7 +198,9 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
       this.isFullQrCode = false,
       this.timer = 5,
       this.bodyState = BodyState.init,
-      this.lessonStudentsEntity});
+      this.lessonStudentsEntity,
+      final List<Widget> listStudentWidget = const []})
+      : _listStudentWidget = listStudentWidget;
 
   @override
   @JsonKey()
@@ -204,10 +219,19 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
   final BodyState bodyState;
   @override
   final LessonStudentsEntity? lessonStudentsEntity;
+  final List<Widget> _listStudentWidget;
+  @override
+  @JsonKey()
+  List<Widget> get listStudentWidget {
+    if (_listStudentWidget is EqualUnmodifiableListView)
+      return _listStudentWidget;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listStudentWidget);
+  }
 
   @override
   String toString() {
-    return 'DetailLessonState(asyncSnapshot: $asyncSnapshot, url: $url, isFullQrCode: $isFullQrCode, timer: $timer, bodyState: $bodyState, lessonStudentsEntity: $lessonStudentsEntity)';
+    return 'DetailLessonState(asyncSnapshot: $asyncSnapshot, url: $url, isFullQrCode: $isFullQrCode, timer: $timer, bodyState: $bodyState, lessonStudentsEntity: $lessonStudentsEntity, listStudentWidget: $listStudentWidget)';
   }
 
   @override
@@ -224,12 +248,21 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
             (identical(other.bodyState, bodyState) ||
                 other.bodyState == bodyState) &&
             (identical(other.lessonStudentsEntity, lessonStudentsEntity) ||
-                other.lessonStudentsEntity == lessonStudentsEntity));
+                other.lessonStudentsEntity == lessonStudentsEntity) &&
+            const DeepCollectionEquality()
+                .equals(other._listStudentWidget, _listStudentWidget));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, asyncSnapshot, url, isFullQrCode,
-      timer, bodyState, lessonStudentsEntity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      asyncSnapshot,
+      url,
+      isFullQrCode,
+      timer,
+      bodyState,
+      lessonStudentsEntity,
+      const DeepCollectionEquality().hash(_listStudentWidget));
 
   @JsonKey(ignore: true)
   @override
@@ -241,13 +274,13 @@ class _$DetailLessonStateImpl implements _DetailLessonState {
 
 abstract class _DetailLessonState implements DetailLessonState {
   const factory _DetailLessonState(
-          {final AsyncSnapshot<dynamic> asyncSnapshot,
-          final String url,
-          final bool isFullQrCode,
-          final int timer,
-          final BodyState bodyState,
-          final LessonStudentsEntity? lessonStudentsEntity}) =
-      _$DetailLessonStateImpl;
+      {final AsyncSnapshot<dynamic> asyncSnapshot,
+      final String url,
+      final bool isFullQrCode,
+      final int timer,
+      final BodyState bodyState,
+      final LessonStudentsEntity? lessonStudentsEntity,
+      final List<Widget> listStudentWidget}) = _$DetailLessonStateImpl;
 
   @override
   AsyncSnapshot<dynamic> get asyncSnapshot;
@@ -261,6 +294,8 @@ abstract class _DetailLessonState implements DetailLessonState {
   BodyState get bodyState;
   @override
   LessonStudentsEntity? get lessonStudentsEntity;
+  @override
+  List<Widget> get listStudentWidget;
   @override
   @JsonKey(ignore: true)
   _$$DetailLessonStateImplCopyWith<_$DetailLessonStateImpl> get copyWith =>

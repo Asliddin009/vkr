@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:client_vkr/app/utils/utils.dart';
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/lessons_repo.dart';
@@ -50,6 +51,12 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
             state.lessonStudentsEntity!.copyWith(listStudent: list)));
   }
 
+  void swapAttendanceStatus2(AttendanceStatus attendanceStatus) {
+    //todo добавить отмечание
+    emit(state.copyWith(
+        lessonStudentsEntity: state.lessonStudentsEntity!.copyWith()));
+  }
+
   void emitNewBodyState(BodyState bodyState) {
     emit(state.copyWith(bodyState: bodyState));
   }
@@ -75,7 +82,11 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     try {
       emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
       final lessonStudentsEntity = await repo.getStudents(id);
+      final list =
+          Utils.getWidgetListFromUserEntity(lessonStudentsEntity.listStudent);
+      print(list[0]);
       emit(state.copyWith(
+          listStudentWidget: list,
           lessonStudentsEntity: lessonStudentsEntity,
           asyncSnapshot:
               const AsyncSnapshot.withData(ConnectionState.done, null)));

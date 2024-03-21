@@ -36,7 +36,8 @@ class ScaffoldDetailScreen extends StatelessWidget {
                     lessonEntity: lessonEntity,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 20, top: 20),
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.sizeOf(context).width / 10, top: 20),
                     child: Align(
                       alignment: Alignment.topRight,
                       child: SizedBox(
@@ -66,10 +67,10 @@ class ScaffoldDetailScreen extends StatelessWidget {
                     child: AppContainer(
                       margin: const EdgeInsets.all(25),
                       child: switch (state.bodyState) {
-                        (BodyState.qrCode) => _buildQrCode(state, context),
-                        (BodyState.addUser) => _buildAddUser(state, context),
-                        (BodyState.list) => _buildList(state, context),
-                        _ => _buildInit(state, context),
+                        (BodyState.qrCode) => _QrCode(state: state),
+                        (BodyState.addUser) => _AddUserForm(),
+                        (BodyState.list) => _ListWidget(state: state),
+                        _ => const _InitWidget(),
                       },
                     ),
                   ),
@@ -156,122 +157,141 @@ class ScaffoldDetailScreen extends StatelessWidget {
   }
 }
 
-Widget _buildAddUser(DetailLessonState state, BuildContext context) {
+class _AddUserForm extends StatelessWidget {
+  _AddUserForm();
   final TextEditingController controllerName = TextEditingController();
   final TextEditingController controllerGroup = TextEditingController();
-  return Padding(
-    padding: const EdgeInsets.all(50),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(50),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text('Форма добавление студента на пару'),
+          const SizedBox(
+            height: 15,
+          ),
+          AppTextField(controller: controllerName, labelText: 'ФИО'),
+          const SizedBox(
+            height: 15,
+          ),
+          AppTextField(controller: controllerGroup, labelText: 'Группа'),
+          const SizedBox(
+            height: 15,
+          ),
+          AppTextButton(
+              onPressed: () {
+                if (controllerName.text.isEmpty) {
+                  AppSnackBar.showSnackBarWithMessage(
+                      context, 'ФИО обязательное поле');
+                }
+                context
+                    .read<DetailLessonCubit>()
+                    .addUser(controllerName.text, controllerGroup.text)
+                    .then((value) {
+                  value
+                      ? AppSnackBar.showSnackBarSuccesful(
+                          context, 'пользователь добавлен')
+                      : AppSnackBar.showSnackBarWithError(
+                          context, ErrorEntity(message: 'Произошла ошибка'));
+                });
+              },
+              text: 'Добавить')
+        ],
+      ),
+    );
+  }
+}
+
+class _InitWidget extends StatelessWidget {
+  const _InitWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Инструкция скоро будет'),
+    );
+  }
+}
+
+class _ListWidget extends StatelessWidget {
+  const _ListWidget({required this.state});
+  final DetailLessonState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return switch (state.asyncSnapshot) {
+      (const AsyncSnapshot.waiting()) => SpinKitDancingSquare(
+          color: Colors.blueAccent.shade400,
+          size: 200.0,
+        ),
+      _ => Padding(
+          padding: const EdgeInsets.all(25),
+          child: ListStudent(list: state.listStudentWidget, context: context))
+    };
+  }
+}
+
+class _QrCode extends StatelessWidget {
+  const _QrCode({required this.state});
+
+  final DetailLessonState state;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Text('Форма добавление студента на пару'),
-        const SizedBox(
-          height: 15,
+        Text(
+          'Чтобы отметиться надо просканировать Qr code',
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-        AppTextField(controller: controllerName, labelText: 'ФИО'),
         const SizedBox(
-          height: 15,
+          height: 20,
         ),
-        AppTextField(controller: controllerGroup, labelText: 'Группа'),
         const SizedBox(
-          height: 15,
+          height: 25,
         ),
-        AppTextButton(
-            onPressed: () {
-              if (controllerName.text.isEmpty) {
-                AppSnackBar.showSnackBarWithMessage(
-                    context, 'ФИО обязательное поле');
-              }
-              context
-                  .read<DetailLessonCubit>()
-                  .addUser(controllerName.text, controllerGroup.text)
-                  .then((value) {
-                value
-                    ? AppSnackBar.showSnackBarSuccesful(
-                        context, 'пользователь добавлен')
-                    : AppSnackBar.showSnackBarWithError(
-                        context, ErrorEntity(message: 'Произошла ошибка'));
-              });
-            },
-            text: 'Добавить')
-      ],
-    ),
-  );
-}
-
-Widget _buildInit(DetailLessonState state, BuildContext context) {
-  return const Center(
-    child: Text('Инструкция скоро будет'),
-  );
-}
-
-Widget _buildList(DetailLessonState state, BuildContext context) {
-  return switch (state.asyncSnapshot) {
-    (const AsyncSnapshot.waiting()) => SpinKitDancingSquare(
-        color: Colors.blueAccent.shade400,
-        size: 200.0,
-      ),
-    _ => Padding(
-        padding: const EdgeInsets.all(25),
-        child: ListStudent(
-            list: state.lessonStudentsEntity?.listStudent ?? [],
-            context: context))
-  };
-}
-
-Widget _buildQrCode(DetailLessonState state, BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      Text(
-        'Чтобы отметиться надо просканировать Qr code',
-        style: Theme.of(context).textTheme.titleMedium,
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      const SizedBox(
-        height: 25,
-      ),
-      state.asyncSnapshot == const AsyncSnapshot.waiting()
-          ? SpinKitDancingSquare(
-              color: Colors.blueAccent.shade400,
-              size: 200.0,
-            )
-          : state.url == ''
-              ? const SizedBox(
-                  height: 200,
-                  width: 200,
-                )
-              : GestureDetector(
-                  onDoubleTap: () {
-                    context.read<DetailLessonCubit>().openQrCodeFull();
-                  },
-                  child: SizedBox(
+        state.asyncSnapshot == const AsyncSnapshot.waiting()
+            ? SpinKitDancingSquare(
+                color: Colors.blueAccent.shade400,
+                size: 200.0,
+              )
+            : state.url == ''
+                ? const SizedBox(
                     height: 200,
                     width: 200,
-                    child: PrettyQrView.data(
-                      data: state.url,
+                  )
+                : GestureDetector(
+                    onDoubleTap: () {
+                      context.read<DetailLessonCubit>().openQrCodeFull();
+                    },
+                    child: SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: PrettyQrView.data(
+                        data: state.url,
+                      ),
                     ),
                   ),
-                ),
-      const SizedBox(
-        height: 16,
-      ),
-      state.url == ''
-          ? const SizedBox()
-          : Column(
-              children: [
-                Text("до обновления Qr-coda ${state.timer} секунд"),
-                const SizedBox(
-                  height: 7,
-                ),
-                const Text(
-                    'Нажмите 2 раза по QR коду для того чтобы открыть на весь экран')
-              ],
-            ),
-    ],
-  );
+        const SizedBox(
+          height: 16,
+        ),
+        state.url == ''
+            ? const SizedBox()
+            : Column(
+                children: [
+                  Text("до обновления Qr-coda ${state.timer} секунд"),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  const Text(
+                      'Нажмите 2 раза по QR коду для того чтобы открыть на весь экран')
+                ],
+              ),
+      ],
+    );
+  }
 }

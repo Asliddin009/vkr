@@ -50,7 +50,7 @@ class ScaffoldFullQrCode extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               top: 20, left: 40, right: 40, bottom: 30),
                           child: ListStudent(
-                            list: state.lessonStudentsEntity?.listStudent ?? [],
+                            list: state.listStudentWidget,
                             context: context,
                           ),
                         ),

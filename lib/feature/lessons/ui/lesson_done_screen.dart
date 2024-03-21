@@ -8,9 +8,9 @@ class LessonDoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.grey.shade300,
+          backgroundColor: Colors.white,
           title: const Text('Главный экран'),
           actions: [
             TextButton(
@@ -47,8 +47,8 @@ class LessonDoneScreen extends StatelessWidget {
               ),
             ),
             AppContainer(
+              color: const Color.fromARGB(255, 255, 255, 255),
               height: listLessons.length * 170 + 6 * 50,
-              color: Colors.grey.shade300,
               child: Column(
                 children: getListDayContainer(listLessons),
               ),

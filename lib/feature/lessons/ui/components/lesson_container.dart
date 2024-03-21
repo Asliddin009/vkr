@@ -1,3 +1,4 @@
+import 'package:client_vkr/app/utils/color_hex.dart';
 import 'package:client_vkr/feature/lessons/ui/detail_lesson/detail_lesson_screen.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +23,17 @@ class LessonContainer extends StatelessWidget {
         }
       },
       child: Container(
-        margin: const EdgeInsets.all(5),
-        padding: const EdgeInsets.only(left: 15),
+        margin: const EdgeInsets.all(8),
+        padding: const EdgeInsets.only(
+          left: 15,
+          right: 15,
+        ),
+        width: MediaQuery.of(context).size.width * 9 / 10,
         height: 140,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(25)),
+            color: HexColor.fromHex('#dadff2'),
+            border: Border.all(color: HexColor.fromHex('#ffffff')),
+            borderRadius: BorderRadius.circular(8)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

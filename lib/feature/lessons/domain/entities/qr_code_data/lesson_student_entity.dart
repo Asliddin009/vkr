@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'lesson_student_entity.freezed.dart';

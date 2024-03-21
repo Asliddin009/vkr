@@ -27,7 +27,6 @@ class DayContainer extends StatelessWidget {
         ),
         SizedBox(
           height: height,
-          width: 500,
           child: listLessons.isNotEmpty
               ? ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -51,5 +50,14 @@ class DayContainer extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Color getColorForContentTable(String lessonType) {
+    return switch (lessonType) {
+      ("Лекция") => Colors.green.shade800,
+      ("Практические (семинарские занятия)") => Colors.yellow,
+      ('Лабораторные работы') => Colors.blueAccent.shade700,
+      (_) => Colors.yellow.shade900
+    };
   }
 }

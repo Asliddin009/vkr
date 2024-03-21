@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
+import 'package:client_vkr/feature/lessons/ui/components/list_student.dart';
+import 'package:flutter/material.dart';
+
 abstract class Utils {
   ///return lessonId and qrCodeId
   static (String lessonId, String qrCodeId) getIdFromUrl(String url) {
@@ -83,5 +87,87 @@ abstract class Utils {
       (11) => "Ноября",
       (_) => "Декабря"
     };
+  }
+
+  static List<Widget> getWidgetListFromUserEntity(List<UserEntity> list) {
+    List<Widget> listRes = [];
+    for (var element in list) {
+      listRes.add(Padding(
+        padding: const EdgeInsets.only(right: 12),
+        child: SizedBox(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(element.name),
+              Row(
+                children: [
+                  SizedBoxForCheckbox(
+                    child: Checkbox(
+                        value: element.attendanceStatus ==
+                            AttendanceStatus.present,
+                        onChanged: (value) {}),
+                  ),
+                  SizedBoxForCheckbox(
+                    child: Checkbox(
+                        value:
+                            element.attendanceStatus == AttendanceStatus.sick,
+                        onChanged: (value) {
+                          // final newList = list.map((entity) {
+                          //   if (entity.name == element.name) {
+                          //     return entity.copyWith(
+                          //         attendanceStatus:
+                          //             AttendanceStatus.sick);
+                          //   }
+                          //   return entity;
+                          // }).toList();
+                          // context
+                          //     .read<DetailLessonCubit>()
+                          //     .swapAttendanceStatus(newList);
+                        }),
+                  ),
+                  SizedBoxForCheckbox(
+                    child: Checkbox(
+                        value: element.attendanceStatus ==
+                            AttendanceStatus.excused,
+                        onChanged: (value) {
+                          // final newList = list.map((entity) {
+                          //   if (entity.name == element.name) {
+                          //     return entity.copyWith(
+                          //         attendanceStatus:
+                          //             AttendanceStatus.excused);
+                          //   }
+                          //   return entity;
+                          // }).toList();
+                          // context
+                          //     .read<DetailLessonCubit>()
+                          //     .swapAttendanceStatus(newList);
+                        }),
+                  ),
+                  SizedBoxForCheckbox(
+                    child: Checkbox(
+                        value:
+                            element.attendanceStatus == AttendanceStatus.absent,
+                        onChanged: (value) {
+                          // final newList = list.map((entity) {
+                          //   if (entity.name == element.name) {
+                          //     return entity.copyWith(
+                          //         attendanceStatus:
+                          //             AttendanceStatus.absent);
+                          //   }
+                          //   return entity;
+                          // }).toList();
+                          // context
+                          //     .read<DetailLessonCubit>()
+                          //     .swapAttendanceStatus(newList);
+                        }),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ));
+    }
+    return listRes;
   }
 }
