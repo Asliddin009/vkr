@@ -89,82 +89,88 @@ abstract class Utils {
     };
   }
 
-  static List<Widget> getWidgetListFromUserEntity(List<UserEntity> list) {
+  static List<Widget> getWidgetListFromUserEntity(
+      List<UserEntity> list, Function(bool?)? onChanged) {
     List<Widget> listRes = [];
     for (var element in list) {
       listRes.add(Padding(
         padding: const EdgeInsets.only(right: 12),
-        child: SizedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(element.name),
-              Row(
-                children: [
-                  SizedBoxForCheckbox(
-                    child: Checkbox(
-                        value: element.attendanceStatus ==
-                            AttendanceStatus.present,
-                        onChanged: (value) {}),
-                  ),
-                  SizedBoxForCheckbox(
-                    child: Checkbox(
-                        value:
-                            element.attendanceStatus == AttendanceStatus.sick,
-                        onChanged: (value) {
-                          // final newList = list.map((entity) {
-                          //   if (entity.name == element.name) {
-                          //     return entity.copyWith(
-                          //         attendanceStatus:
-                          //             AttendanceStatus.sick);
-                          //   }
-                          //   return entity;
-                          // }).toList();
-                          // context
-                          //     .read<DetailLessonCubit>()
-                          //     .swapAttendanceStatus(newList);
-                        }),
-                  ),
-                  SizedBoxForCheckbox(
-                    child: Checkbox(
-                        value: element.attendanceStatus ==
-                            AttendanceStatus.excused,
-                        onChanged: (value) {
-                          // final newList = list.map((entity) {
-                          //   if (entity.name == element.name) {
-                          //     return entity.copyWith(
-                          //         attendanceStatus:
-                          //             AttendanceStatus.excused);
-                          //   }
-                          //   return entity;
-                          // }).toList();
-                          // context
-                          //     .read<DetailLessonCubit>()
-                          //     .swapAttendanceStatus(newList);
-                        }),
-                  ),
-                  SizedBoxForCheckbox(
-                    child: Checkbox(
-                        value:
-                            element.attendanceStatus == AttendanceStatus.absent,
-                        onChanged: (value) {
-                          // final newList = list.map((entity) {
-                          //   if (entity.name == element.name) {
-                          //     return entity.copyWith(
-                          //         attendanceStatus:
-                          //             AttendanceStatus.absent);
-                          //   }
-                          //   return entity;
-                          // }).toList();
-                          // context
-                          //     .read<DetailLessonCubit>()
-                          //     .swapAttendanceStatus(newList);
-                        }),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(element.name),
+                Row(
+                  children: [
+                    SizedBoxForCheckbox(
+                      child: Checkbox(
+                          value: element.attendanceStatus ==
+                              AttendanceStatus.present,
+                          onChanged: (value) {}),
+                    ),
+                    SizedBoxForCheckbox(
+                      child: Checkbox(
+                          value:
+                              element.attendanceStatus == AttendanceStatus.sick,
+                          onChanged: (value) {
+                            // final newList = list.map((entity) {
+                            //   if (entity.name == element.name) {
+                            //     return entity.copyWith(
+                            //         attendanceStatus:
+                            //             AttendanceStatus.sick);
+                            //   }
+                            //   return entity;
+                            // }).toList();
+                            // context
+                            //     .read<DetailLessonCubit>()
+                            //     .swapAttendanceStatus(newList);
+                          }),
+                    ),
+                    SizedBoxForCheckbox(
+                      child: Checkbox(
+                          value: element.attendanceStatus ==
+                              AttendanceStatus.excused,
+                          onChanged: (value) {
+                            // final newList = list.map((entity) {
+                            //   if (entity.name == element.name) {
+                            //     return entity.copyWith(
+                            //         attendanceStatus:
+                            //             AttendanceStatus.excused);
+                            //   }
+                            //   return entity;
+                            // }).toList();
+                            // context
+                            //     .read<DetailLessonCubit>()
+                            //     .swapAttendanceStatus(newList);
+                          }),
+                    ),
+                    SizedBoxForCheckbox(
+                      child: Checkbox(
+                          value: element.attendanceStatus ==
+                              AttendanceStatus.absent,
+                          onChanged: (value) {
+                            // final newList = list.map((entity) {
+                            //   if (entity.name == element.name) {
+                            //     return entity.copyWith(
+                            //         attendanceStatus:
+                            //             AttendanceStatus.absent);
+                            //   }
+                            //   return entity;
+                            // }).toList();
+                            // context
+                            //     .read<DetailLessonCubit>()
+                            //     .swapAttendanceStatus(newList);
+                          }),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            element != list[list.length - 1]
+                ? const Divider()
+                : const SizedBox(),
+          ],
         ),
       ));
     }

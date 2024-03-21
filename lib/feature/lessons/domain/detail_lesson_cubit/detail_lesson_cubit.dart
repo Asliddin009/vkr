@@ -82,9 +82,8 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     try {
       emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
       final lessonStudentsEntity = await repo.getStudents(id);
-      final list =
-          Utils.getWidgetListFromUserEntity(lessonStudentsEntity.listStudent);
-      print(list[0]);
+      final list = Utils.getWidgetListFromUserEntity(
+          lessonStudentsEntity.listStudent, (value) {});
       emit(state.copyWith(
           listStudentWidget: list,
           lessonStudentsEntity: lessonStudentsEntity,
