@@ -3,7 +3,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
-import '../domain/entities/error_entity/error_entity.dart';
+import '../../domain/entities/error_entity/error_entity.dart';
 
 abstract class AppSnackBar {
   static void showSnackBarWithError(BuildContext context, ErrorEntity error) {

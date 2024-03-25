@@ -8,6 +8,8 @@ import 'package:client_vkr/app/ui/theme/light_theme.dart';
 import '../../feature/auth/domain/auth_bloc/auth_cubit.dart';
 import '../di/init_di.dart';
 import '../domain/app_builder.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MainAppBuilder implements AppBuilder {
   @override
@@ -15,6 +17,15 @@ class MainAppBuilder implements AppBuilder {
     return _GlobalProviders(
       child: MaterialApp(
         theme: lightTheme,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('ru'),
+          Locale('en'),
+        ],
         debugShowCheckedModeBanner: false,
         home: const RootScreen(),
       ),

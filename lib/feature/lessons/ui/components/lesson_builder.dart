@@ -14,7 +14,7 @@ class LessonBuilder extends StatelessWidget {
       builder: (context, state) {
         return state.whenOrNull(
               loading: () => const AppLoader(),
-              done: (listLessons) => LessonDoneScreen(
+              done: (listLessons, test) => LessonDoneScreen(
                 userEntity: userEntity,
                 listLessons: listLessons,
               ),

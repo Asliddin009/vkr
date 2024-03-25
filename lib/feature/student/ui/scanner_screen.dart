@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:client_vkr/app/di/init_di.dart';
 import 'package:client_vkr/app/domain/entities/error_entity/error_entity.dart';
-import 'package:client_vkr/app/ui/app_snack_bar.dart';
+import 'package:client_vkr/app/ui/components/app_snack_bar.dart';
 import 'package:client_vkr/feature/student/domain/cubit/qr_code_cubit.dart';
 import 'package:client_vkr/feature/student/ui/scanner_result_screen.dart';
 import 'package:client_vkr/feature/student/ui/widgets/qr_scanner_overlay.dart';

@@ -1,12 +1,12 @@
 import 'package:client_vkr/app/domain/entities/error_entity/error_entity.dart';
-import 'package:client_vkr/app/ui/app_container.dart';
-import 'package:client_vkr/app/ui/app_snack_bar.dart';
-import 'package:client_vkr/app/ui/app_text_button.dart';
-import 'package:client_vkr/app/ui/app_text_field.dart';
-import 'package:client_vkr/feature/lessons/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
+import 'package:client_vkr/app/ui/components/app_container.dart';
+import 'package:client_vkr/app/ui/components/app_snack_bar.dart';
+import 'package:client_vkr/app/ui/components/app_text_button.dart';
+import 'package:client_vkr/app/ui/components/app_text_field.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
 import 'package:client_vkr/feature/lessons/ui/components/lesson_container.dart';
-import 'package:client_vkr/feature/lessons/ui/components/list_student.dart';
+import 'package:client_vkr/feature/detail_lesson/ui/components/list_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -114,7 +114,7 @@ class ScaffoldDetailScreen extends StatelessWidget {
                                       state.lessonStudentsEntity?.listStudent ??
                                           [];
                                   if (list.isEmpty) {
-                                    cubit.getLessonStudents();
+                                    cubit.getLessonStudents(context: context);
                                   }
                                   cubit.emitNewBodyState(BodyState.list);
                                 },
@@ -229,7 +229,9 @@ class _ListWidget extends StatelessWidget {
         ),
       _ => Padding(
           padding: const EdgeInsets.all(25),
-          child: ListStudent(list: state.listStudentWidget, context: context))
+          child: ListStudent(
+            list: state.listStudentWidget,
+          ))
     };
   }
 }

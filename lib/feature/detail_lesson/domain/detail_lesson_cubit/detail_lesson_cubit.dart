@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:client_vkr/app/utils/utils.dart';
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_repo.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
-import 'package:client_vkr/feature/lessons/domain/lessons_repo.dart';
+import 'package:client_vkr/feature/detail_lesson/ui/components/list_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'detail_lesson_state.dart';
 part 'detail_lesson_cubit.freezed.dart';
 
@@ -15,7 +14,7 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
   DetailLessonCubit(this.id, this.repo)
       : super(const DetailLessonState(asyncSnapshot: AsyncSnapshot.nothing()));
 
-  final LessonsRepo repo;
+  final DetailLessonRepo repo;
   final int id;
   bool isWork = false;
   Timer? timerUpdate;
@@ -45,16 +44,17 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     emit(state.copyWith(isFullQrCode: flag));
   }
 
-  void swapAttendanceStatus(List<UserEntity> list) {
-    emit(state.copyWith(
-        lessonStudentsEntity:
-            state.lessonStudentsEntity!.copyWith(listStudent: list)));
-  }
-
-  void swapAttendanceStatus2(AttendanceStatus attendanceStatus) {
-    //todo добавить отмечание
-    emit(state.copyWith(
-        lessonStudentsEntity: state.lessonStudentsEntity!.copyWith()));
+  void swapAttendanceStatus(List<UserEntity> list, {BuildContext? context}) {
+    log('swapAttendanceStatus активировался');
+    //todo порефакторит когда будет прод
+    if (context != null) {
+      //
+      final listWidget = getWidgetListFromUserEntity(list, context);
+      emit(state.copyWith(
+          listStudentWidget: listWidget,
+          lessonStudentsEntity:
+              state.lessonStudentsEntity!.copyWith(listStudent: list)));
+    }
   }
 
   void emitNewBodyState(BodyState bodyState) {
@@ -78,14 +78,20 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
     }
   }
 
-  void getLessonStudents() async {
+  void getLessonStudents({BuildContext? context}) async {
     try {
       emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
       final lessonStudentsEntity = await repo.getStudents(id);
-      final list = Utils.getWidgetListFromUserEntity(
-          lessonStudentsEntity.listStudent, (value) {});
-      emit(state.copyWith(
+      if (context != null) {
+        final list = getWidgetListFromUserEntity(
+            // ignore: use_build_context_synchronously
+            lessonStudentsEntity.listStudent,
+            context);
+        emit(state.copyWith(
           listStudentWidget: list,
+        ));
+      }
+      emit(state.copyWith(
           lessonStudentsEntity: lessonStudentsEntity,
           asyncSnapshot:
               const AsyncSnapshot.withData(ConnectionState.done, null)));

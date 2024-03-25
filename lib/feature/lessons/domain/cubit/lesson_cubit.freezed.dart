@@ -20,7 +20,8 @@ mixin _$LessonState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson) done,
+    required TResult Function(List<LessonEntity> listLesson, String dateStart)
+        done,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +29,7 @@ mixin _$LessonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson)? done,
+    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ mixin _$LessonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson)? done,
+    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +133,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson) done,
+    required TResult Function(List<LessonEntity> listLesson, String dateStart)
+        done,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -143,7 +145,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson)? done,
+    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -154,7 +156,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson)? done,
+    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -254,7 +256,8 @@ class _$LoadingLessonStateImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson) done,
+    required TResult Function(List<LessonEntity> listLesson, String dateStart)
+        done,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -265,7 +268,7 @@ class _$LoadingLessonStateImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson)? done,
+    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -276,7 +279,7 @@ class _$LoadingLessonStateImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson)? done,
+    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -334,7 +337,7 @@ abstract class _$$DoneLessonStateImplCopyWith<$Res> {
           $Res Function(_$DoneLessonStateImpl) then) =
       __$$DoneLessonStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<LessonEntity> listLesson});
+  $Res call({List<LessonEntity> listLesson, String dateStart});
 }
 
 /// @nodoc
@@ -349,12 +352,17 @@ class __$$DoneLessonStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? listLesson = null,
+    Object? dateStart = null,
   }) {
     return _then(_$DoneLessonStateImpl(
       null == listLesson
           ? _value._listLesson
           : listLesson // ignore: cast_nullable_to_non_nullable
               as List<LessonEntity>,
+      null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -364,7 +372,8 @@ class __$$DoneLessonStateImplCopyWithImpl<$Res>
 class _$DoneLessonStateImpl
     with DiagnosticableTreeMixin
     implements _DoneLessonState {
-  const _$DoneLessonStateImpl(final List<LessonEntity> listLesson)
+  const _$DoneLessonStateImpl(
+      final List<LessonEntity> listLesson, this.dateStart)
       : _listLesson = listLesson;
 
   final List<LessonEntity> _listLesson;
@@ -376,8 +385,11 @@ class _$DoneLessonStateImpl
   }
 
   @override
+  final String dateStart;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonState.done(listLesson: $listLesson)';
+    return 'LessonState.done(listLesson: $listLesson, dateStart: $dateStart)';
   }
 
   @override
@@ -385,7 +397,8 @@ class _$DoneLessonStateImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'LessonState.done'))
-      ..add(DiagnosticsProperty('listLesson', listLesson));
+      ..add(DiagnosticsProperty('listLesson', listLesson))
+      ..add(DiagnosticsProperty('dateStart', dateStart));
   }
 
   @override
@@ -394,12 +407,14 @@ class _$DoneLessonStateImpl
         (other.runtimeType == runtimeType &&
             other is _$DoneLessonStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._listLesson, _listLesson));
+                .equals(other._listLesson, _listLesson) &&
+            (identical(other.dateStart, dateStart) ||
+                other.dateStart == dateStart));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_listLesson));
+      runtimeType, const DeepCollectionEquality().hash(_listLesson), dateStart);
 
   @JsonKey(ignore: true)
   @override
@@ -413,10 +428,11 @@ class _$DoneLessonStateImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson) done,
+    required TResult Function(List<LessonEntity> listLesson, String dateStart)
+        done,
     required TResult Function(String message) error,
   }) {
-    return done(listLesson);
+    return done(listLesson, dateStart);
   }
 
   @override
@@ -424,10 +440,10 @@ class _$DoneLessonStateImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson)? done,
+    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(listLesson);
+    return done?.call(listLesson, dateStart);
   }
 
   @override
@@ -435,12 +451,12 @@ class _$DoneLessonStateImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson)? done,
+    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(listLesson);
+      return done(listLesson, dateStart);
     }
     return orElse();
   }
@@ -484,10 +500,12 @@ class _$DoneLessonStateImpl
 }
 
 abstract class _DoneLessonState implements LessonState {
-  const factory _DoneLessonState(final List<LessonEntity> listLesson) =
+  const factory _DoneLessonState(
+          final List<LessonEntity> listLesson, final String dateStart) =
       _$DoneLessonStateImpl;
 
   List<LessonEntity> get listLesson;
+  String get dateStart;
   @JsonKey(ignore: true)
   _$$DoneLessonStateImplCopyWith<_$DoneLessonStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -570,7 +588,8 @@ class _$ErrorLessonStateImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson) done,
+    required TResult Function(List<LessonEntity> listLesson, String dateStart)
+        done,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -581,7 +600,7 @@ class _$ErrorLessonStateImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson)? done,
+    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -592,7 +611,7 @@ class _$ErrorLessonStateImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson)? done,
+    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

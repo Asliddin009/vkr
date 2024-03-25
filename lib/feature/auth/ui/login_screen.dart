@@ -1,7 +1,7 @@
-import 'package:client_vkr/app/ui/app_snack_bar.dart';
-import 'package:client_vkr/app/ui/app_text_button.dart';
-import 'package:client_vkr/app/ui/app_text_field.dart';
-import 'package:client_vkr/app/ui/constrained_box.dart';
+import 'package:client_vkr/app/ui/components/app_snack_bar.dart';
+import 'package:client_vkr/app/ui/components/app_text_button.dart';
+import 'package:client_vkr/app/ui/components/app_text_field.dart';
+import 'package:client_vkr/app/ui/components/constrained_box.dart';
 import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

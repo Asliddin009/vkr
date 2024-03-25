@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../feature/auth/ui/components/auth_builder.dart';
 import '../../feature/auth/ui/login_screen.dart';
 import '../../feature/student/ui/main_screen_for_student.dart';
-import 'app_loaded.dart';
+import 'components/app_loaded.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});

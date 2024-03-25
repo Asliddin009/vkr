@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
-import '../../../../app/ui/app_snack_bar.dart';
+import '../../../../app/ui/components/app_snack_bar.dart';
 
 class AuthBuilder extends StatelessWidget {
   const AuthBuilder({

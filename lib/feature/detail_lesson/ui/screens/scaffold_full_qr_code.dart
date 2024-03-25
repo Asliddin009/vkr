@@ -1,7 +1,7 @@
-import 'package:client_vkr/app/ui/app_container.dart';
-import 'package:client_vkr/app/ui/app_text_button.dart';
-import 'package:client_vkr/feature/lessons/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
-import 'package:client_vkr/feature/lessons/ui/components/list_student.dart';
+import 'package:client_vkr/app/ui/components/app_container.dart';
+import 'package:client_vkr/app/ui/components/app_text_button.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
+import 'package:client_vkr/feature/detail_lesson/ui/components/list_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
@@ -51,7 +51,6 @@ class ScaffoldFullQrCode extends StatelessWidget {
                               top: 20, left: 40, right: 40, bottom: 30),
                           child: ListStudent(
                             list: state.listStudentWidget,
-                            context: context,
                           ),
                         ),
                       )

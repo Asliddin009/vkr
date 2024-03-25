@@ -36,9 +36,13 @@ class LessonCubit extends Cubit<LessonState> {
       final startDate = Utils.getStartDate();
       final endDate = Utils.getEndDate();
       final lessons = await repo.getLessons(startDate, endDate);
-      emit(LessonState.done(lessons));
+      emit(LessonState.done(lessons, 'test'));
     } on Exception catch (e) {
       emit(LessonState.error(kDebugMode ? e.toString() : 'Внутренняя ошибка '));
     }
+  }
+
+  void replaceFilter() {
+    //emit(state.whenOrNull(done: (listLesson, dateStart) => ,));
   }
 }

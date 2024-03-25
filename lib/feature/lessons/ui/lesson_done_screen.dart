@@ -8,52 +8,37 @@ class LessonDoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const AppFilterDrawer(),
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text('Главный экран'),
           actions: [
+            Text(
+              userEntity.name,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(
+              width: 25,
+            ),
             TextButton(
                 onPressed: () {
                   locator.get<AuthCubit>().logOut();
                 },
-                child: const Text("Выйти"))
+                child: const Text("Выйти")),
+            const SizedBox(
+              width: 10,
+            ),
           ],
         ),
-        body: ListView(
-          children: [
-            AppContainer(
-              height: 100,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    child: Text(
-                      'Информация о Преподавателе',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Text(
-                        userEntity.name,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+        body: SingleChildScrollView(
+          child: AppContainer(
+            color: const Color.fromARGB(255, 255, 255, 255),
+            height: listLessons.length * 170 + 6 * 50,
+            child: Column(
+              children: getListDayContainer(listLessons),
             ),
-            AppContainer(
-              color: const Color.fromARGB(255, 255, 255, 255),
-              height: listLessons.length * 170 + 6 * 50,
-              child: Column(
-                children: getListDayContainer(listLessons),
-              ),
-            ),
-          ],
+          ),
         ));
   }
 

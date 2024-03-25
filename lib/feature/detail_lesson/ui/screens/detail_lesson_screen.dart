@@ -1,11 +1,11 @@
 import 'package:client_vkr/app/di/init_di.dart';
 import 'package:client_vkr/app/domain/entities/error_entity/error_entity.dart';
-import 'package:client_vkr/app/ui/app_snack_bar.dart';
-import 'package:client_vkr/feature/lessons/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
+import 'package:client_vkr/app/ui/components/app_snack_bar.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_repo.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
-import 'package:client_vkr/feature/lessons/domain/lessons_repo.dart';
-import 'package:client_vkr/feature/lessons/ui/detail_lesson/scaffold_detail_info.dart';
-import 'package:client_vkr/feature/lessons/ui/detail_lesson/scaffold_full_qr_code.dart';
+import 'package:client_vkr/feature/detail_lesson/ui/screens/scaffold_detail_info.dart';
+import 'package:client_vkr/feature/detail_lesson/ui/screens/scaffold_full_qr_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +16,7 @@ class DetailLessonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          DetailLessonCubit(lessonEntity.id, locator.get<LessonsRepo>()),
+          DetailLessonCubit(lessonEntity.id, locator.get<DetailLessonRepo>()),
       child: _DetailLessonScreen(lessonEntity),
     );
   }

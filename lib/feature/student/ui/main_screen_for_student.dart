@@ -1,6 +1,6 @@
 import 'package:client_vkr/app/di/init_di.dart';
-import 'package:client_vkr/app/ui/app_container.dart';
-import 'package:client_vkr/app/ui/app_text_button.dart';
+import 'package:client_vkr/app/ui/components/app_container.dart';
+import 'package:client_vkr/app/ui/components/app_text_button.dart';
 import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
 import 'package:client_vkr/feature/student/ui/scanner_screen.dart';
 import 'package:flutter/material.dart';
