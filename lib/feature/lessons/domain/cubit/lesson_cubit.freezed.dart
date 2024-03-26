@@ -16,56 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LessonState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson, String dateStart)
-        done,
-    required TResult Function(String message) error,
-  }) =>
+  AsyncSnapshot<dynamic> get asyncSnapshot =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadingLessonState value) loading,
-    required TResult Function(_DoneLessonState value) done,
-    required TResult Function(_ErrorLessonState value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadingLessonState value)? loading,
-    TResult? Function(_DoneLessonState value)? done,
-    TResult? Function(_ErrorLessonState value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadingLessonState value)? loading,
-    TResult Function(_DoneLessonState value)? done,
-    TResult Function(_ErrorLessonState value)? error,
-    required TResult orElse(),
-  }) =>
+  List<LessonEntity> get listLesson => throw _privateConstructorUsedError;
+  FilterEntity? get filterEntity => throw _privateConstructorUsedError;
+  List<String> get listLessonType => throw _privateConstructorUsedError;
+  List<String> get listGroup => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LessonStateCopyWith<LessonState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,6 +33,13 @@ abstract class $LessonStateCopyWith<$Res> {
   factory $LessonStateCopyWith(
           LessonState value, $Res Function(LessonState) then) =
       _$LessonStateCopyWithImpl<$Res, LessonState>;
+  @useResult
+  $Res call(
+      {AsyncSnapshot<dynamic> asyncSnapshot,
+      List<LessonEntity> listLesson,
+      FilterEntity? filterEntity,
+      List<String> listLessonType,
+      List<String> listGroup});
 }
 
 /// @nodoc
@@ -85,297 +51,115 @@ class _$LessonStateCopyWithImpl<$Res, $Val extends LessonState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? asyncSnapshot = null,
+    Object? listLesson = null,
+    Object? filterEntity = freezed,
+    Object? listLessonType = null,
+    Object? listGroup = null,
+  }) {
+    return _then(_value.copyWith(
+      asyncSnapshot: null == asyncSnapshot
+          ? _value.asyncSnapshot
+          : asyncSnapshot // ignore: cast_nullable_to_non_nullable
+              as AsyncSnapshot<dynamic>,
+      listLesson: null == listLesson
+          ? _value.listLesson
+          : listLesson // ignore: cast_nullable_to_non_nullable
+              as List<LessonEntity>,
+      filterEntity: freezed == filterEntity
+          ? _value.filterEntity
+          : filterEntity // ignore: cast_nullable_to_non_nullable
+              as FilterEntity?,
+      listLessonType: null == listLessonType
+          ? _value.listLessonType
+          : listLessonType // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      listGroup: null == listGroup
+          ? _value.listGroup
+          : listGroup // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
-  const _$InitialImpl();
-
+abstract class _$$LessonStateImplCopyWith<$Res>
+    implements $LessonStateCopyWith<$Res> {
+  factory _$$LessonStateImplCopyWith(
+          _$LessonStateImpl value, $Res Function(_$LessonStateImpl) then) =
+      __$$LessonStateImplCopyWithImpl<$Res>;
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LessonState.initial'));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson, String dateStart)
-        done,
-    required TResult Function(String message) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult? Function(String message)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadingLessonState value) loading,
-    required TResult Function(_DoneLessonState value) done,
-    required TResult Function(_ErrorLessonState value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadingLessonState value)? loading,
-    TResult? Function(_DoneLessonState value)? done,
-    TResult? Function(_ErrorLessonState value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadingLessonState value)? loading,
-    TResult Function(_DoneLessonState value)? done,
-    TResult Function(_ErrorLessonState value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements LessonState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingLessonStateImplCopyWith<$Res> {
-  factory _$$LoadingLessonStateImplCopyWith(_$LoadingLessonStateImpl value,
-          $Res Function(_$LoadingLessonStateImpl) then) =
-      __$$LoadingLessonStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingLessonStateImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$LoadingLessonStateImpl>
-    implements _$$LoadingLessonStateImplCopyWith<$Res> {
-  __$$LoadingLessonStateImplCopyWithImpl(_$LoadingLessonStateImpl _value,
-      $Res Function(_$LoadingLessonStateImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadingLessonStateImpl
-    with DiagnosticableTreeMixin
-    implements _LoadingLessonState {
-  const _$LoadingLessonStateImpl();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LessonState.loading'));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingLessonStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson, String dateStart)
-        done,
-    required TResult Function(String message) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult? Function(String message)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadingLessonState value) loading,
-    required TResult Function(_DoneLessonState value) done,
-    required TResult Function(_ErrorLessonState value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadingLessonState value)? loading,
-    TResult? Function(_DoneLessonState value)? done,
-    TResult? Function(_ErrorLessonState value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadingLessonState value)? loading,
-    TResult Function(_DoneLessonState value)? done,
-    TResult Function(_ErrorLessonState value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadingLessonState implements LessonState {
-  const factory _LoadingLessonState() = _$LoadingLessonStateImpl;
-}
-
-/// @nodoc
-abstract class _$$DoneLessonStateImplCopyWith<$Res> {
-  factory _$$DoneLessonStateImplCopyWith(_$DoneLessonStateImpl value,
-          $Res Function(_$DoneLessonStateImpl) then) =
-      __$$DoneLessonStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<LessonEntity> listLesson, String dateStart});
+  $Res call(
+      {AsyncSnapshot<dynamic> asyncSnapshot,
+      List<LessonEntity> listLesson,
+      FilterEntity? filterEntity,
+      List<String> listLessonType,
+      List<String> listGroup});
 }
 
 /// @nodoc
-class __$$DoneLessonStateImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$DoneLessonStateImpl>
-    implements _$$DoneLessonStateImplCopyWith<$Res> {
-  __$$DoneLessonStateImplCopyWithImpl(
-      _$DoneLessonStateImpl _value, $Res Function(_$DoneLessonStateImpl) _then)
+class __$$LessonStateImplCopyWithImpl<$Res>
+    extends _$LessonStateCopyWithImpl<$Res, _$LessonStateImpl>
+    implements _$$LessonStateImplCopyWith<$Res> {
+  __$$LessonStateImplCopyWithImpl(
+      _$LessonStateImpl _value, $Res Function(_$LessonStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? asyncSnapshot = null,
     Object? listLesson = null,
-    Object? dateStart = null,
+    Object? filterEntity = freezed,
+    Object? listLessonType = null,
+    Object? listGroup = null,
   }) {
-    return _then(_$DoneLessonStateImpl(
-      null == listLesson
+    return _then(_$LessonStateImpl(
+      asyncSnapshot: null == asyncSnapshot
+          ? _value.asyncSnapshot
+          : asyncSnapshot // ignore: cast_nullable_to_non_nullable
+              as AsyncSnapshot<dynamic>,
+      listLesson: null == listLesson
           ? _value._listLesson
           : listLesson // ignore: cast_nullable_to_non_nullable
               as List<LessonEntity>,
-      null == dateStart
-          ? _value.dateStart
-          : dateStart // ignore: cast_nullable_to_non_nullable
-              as String,
+      filterEntity: freezed == filterEntity
+          ? _value.filterEntity
+          : filterEntity // ignore: cast_nullable_to_non_nullable
+              as FilterEntity?,
+      listLessonType: null == listLessonType
+          ? _value._listLessonType
+          : listLessonType // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      listGroup: null == listGroup
+          ? _value._listGroup
+          : listGroup // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DoneLessonStateImpl
-    with DiagnosticableTreeMixin
-    implements _DoneLessonState {
-  const _$DoneLessonStateImpl(
-      final List<LessonEntity> listLesson, this.dateStart)
-      : _listLesson = listLesson;
+class _$LessonStateImpl with DiagnosticableTreeMixin implements _LessonState {
+  const _$LessonStateImpl(
+      {this.asyncSnapshot = const AsyncSnapshot.nothing(),
+      required final List<LessonEntity> listLesson,
+      this.filterEntity,
+      final List<String> listLessonType = const [],
+      final List<String> listGroup = const []})
+      : _listLesson = listLesson,
+        _listLessonType = listLessonType,
+        _listGroup = listGroup;
 
+  @override
+  @JsonKey()
+  final AsyncSnapshot<dynamic> asyncSnapshot;
   final List<LessonEntity> _listLesson;
   @override
   List<LessonEntity> get listLesson {
@@ -385,286 +169,95 @@ class _$DoneLessonStateImpl
   }
 
   @override
-  final String dateStart;
+  final FilterEntity? filterEntity;
+  final List<String> _listLessonType;
+  @override
+  @JsonKey()
+  List<String> get listLessonType {
+    if (_listLessonType is EqualUnmodifiableListView) return _listLessonType;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listLessonType);
+  }
+
+  final List<String> _listGroup;
+  @override
+  @JsonKey()
+  List<String> get listGroup {
+    if (_listGroup is EqualUnmodifiableListView) return _listGroup;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listGroup);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonState.done(listLesson: $listLesson, dateStart: $dateStart)';
+    return 'LessonState(asyncSnapshot: $asyncSnapshot, listLesson: $listLesson, filterEntity: $filterEntity, listLessonType: $listLessonType, listGroup: $listGroup)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LessonState.done'))
+      ..add(DiagnosticsProperty('type', 'LessonState'))
+      ..add(DiagnosticsProperty('asyncSnapshot', asyncSnapshot))
       ..add(DiagnosticsProperty('listLesson', listLesson))
-      ..add(DiagnosticsProperty('dateStart', dateStart));
+      ..add(DiagnosticsProperty('filterEntity', filterEntity))
+      ..add(DiagnosticsProperty('listLessonType', listLessonType))
+      ..add(DiagnosticsProperty('listGroup', listGroup));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DoneLessonStateImpl &&
+            other is _$LessonStateImpl &&
+            (identical(other.asyncSnapshot, asyncSnapshot) ||
+                other.asyncSnapshot == asyncSnapshot) &&
             const DeepCollectionEquality()
                 .equals(other._listLesson, _listLesson) &&
-            (identical(other.dateStart, dateStart) ||
-                other.dateStart == dateStart));
+            (identical(other.filterEntity, filterEntity) ||
+                other.filterEntity == filterEntity) &&
+            const DeepCollectionEquality()
+                .equals(other._listLessonType, _listLessonType) &&
+            const DeepCollectionEquality()
+                .equals(other._listGroup, _listGroup));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_listLesson), dateStart);
+      runtimeType,
+      asyncSnapshot,
+      const DeepCollectionEquality().hash(_listLesson),
+      filterEntity,
+      const DeepCollectionEquality().hash(_listLessonType),
+      const DeepCollectionEquality().hash(_listGroup));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DoneLessonStateImplCopyWith<_$DoneLessonStateImpl> get copyWith =>
-      __$$DoneLessonStateImplCopyWithImpl<_$DoneLessonStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson, String dateStart)
-        done,
-    required TResult Function(String message) error,
-  }) {
-    return done(listLesson, dateStart);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult? Function(String message)? error,
-  }) {
-    return done?.call(listLesson, dateStart);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (done != null) {
-      return done(listLesson, dateStart);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadingLessonState value) loading,
-    required TResult Function(_DoneLessonState value) done,
-    required TResult Function(_ErrorLessonState value) error,
-  }) {
-    return done(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadingLessonState value)? loading,
-    TResult? Function(_DoneLessonState value)? done,
-    TResult? Function(_ErrorLessonState value)? error,
-  }) {
-    return done?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadingLessonState value)? loading,
-    TResult Function(_DoneLessonState value)? done,
-    TResult Function(_ErrorLessonState value)? error,
-    required TResult orElse(),
-  }) {
-    if (done != null) {
-      return done(this);
-    }
-    return orElse();
-  }
+  _$$LessonStateImplCopyWith<_$LessonStateImpl> get copyWith =>
+      __$$LessonStateImplCopyWithImpl<_$LessonStateImpl>(this, _$identity);
 }
 
-abstract class _DoneLessonState implements LessonState {
-  const factory _DoneLessonState(
-          final List<LessonEntity> listLesson, final String dateStart) =
-      _$DoneLessonStateImpl;
+abstract class _LessonState implements LessonState {
+  const factory _LessonState(
+      {final AsyncSnapshot<dynamic> asyncSnapshot,
+      required final List<LessonEntity> listLesson,
+      final FilterEntity? filterEntity,
+      final List<String> listLessonType,
+      final List<String> listGroup}) = _$LessonStateImpl;
 
+  @override
+  AsyncSnapshot<dynamic> get asyncSnapshot;
+  @override
   List<LessonEntity> get listLesson;
-  String get dateStart;
+  @override
+  FilterEntity? get filterEntity;
+  @override
+  List<String> get listLessonType;
+  @override
+  List<String> get listGroup;
+  @override
   @JsonKey(ignore: true)
-  _$$DoneLessonStateImplCopyWith<_$DoneLessonStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ErrorLessonStateImplCopyWith<$Res> {
-  factory _$$ErrorLessonStateImplCopyWith(_$ErrorLessonStateImpl value,
-          $Res Function(_$ErrorLessonStateImpl) then) =
-      __$$ErrorLessonStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$ErrorLessonStateImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$ErrorLessonStateImpl>
-    implements _$$ErrorLessonStateImplCopyWith<$Res> {
-  __$$ErrorLessonStateImplCopyWithImpl(_$ErrorLessonStateImpl _value,
-      $Res Function(_$ErrorLessonStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorLessonStateImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ErrorLessonStateImpl
-    with DiagnosticableTreeMixin
-    implements _ErrorLessonState {
-  const _$ErrorLessonStateImpl(this.message);
-
-  @override
-  final String message;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonState.error(message: $message)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LessonState.error'))
-      ..add(DiagnosticsProperty('message', message));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ErrorLessonStateImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorLessonStateImplCopyWith<_$ErrorLessonStateImpl> get copyWith =>
-      __$$ErrorLessonStateImplCopyWithImpl<_$ErrorLessonStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<LessonEntity> listLesson, String dateStart)
-        done,
-    required TResult Function(String message) error,
-  }) {
-    return error(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult? Function(String message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<LessonEntity> listLesson, String dateStart)? done,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadingLessonState value) loading,
-    required TResult Function(_DoneLessonState value) done,
-    required TResult Function(_ErrorLessonState value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadingLessonState value)? loading,
-    TResult? Function(_DoneLessonState value)? done,
-    TResult? Function(_ErrorLessonState value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadingLessonState value)? loading,
-    TResult Function(_DoneLessonState value)? done,
-    TResult Function(_ErrorLessonState value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ErrorLessonState implements LessonState {
-  const factory _ErrorLessonState(final String message) =
-      _$ErrorLessonStateImpl;
-
-  String get message;
-  @JsonKey(ignore: true)
-  _$$ErrorLessonStateImplCopyWith<_$ErrorLessonStateImpl> get copyWith =>
+  _$$LessonStateImplCopyWith<_$LessonStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

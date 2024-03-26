@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_repo.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
-import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/entity/qr_code_data/lesson_student_entity.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: DetailLessonRepo)

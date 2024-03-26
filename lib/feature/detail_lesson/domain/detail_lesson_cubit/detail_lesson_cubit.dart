@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_repo.dart';
-import 'package:client_vkr/feature/lessons/domain/entities/qr_code_data/lesson_student_entity.dart';
+import 'package:client_vkr/feature/detail_lesson/domain/entity/qr_code_data/lesson_student_entity.dart';
 import 'package:client_vkr/feature/detail_lesson/ui/components/list_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,8 +84,8 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
       final lessonStudentsEntity = await repo.getStudents(id);
       if (context != null) {
         final list = getWidgetListFromUserEntity(
-            // ignore: use_build_context_synchronously
             lessonStudentsEntity.listStudent,
+            // ignore: use_build_context_synchronously
             context);
         emit(state.copyWith(
           listStudentWidget: list,

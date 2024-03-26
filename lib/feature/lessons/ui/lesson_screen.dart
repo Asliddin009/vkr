@@ -13,8 +13,7 @@ import 'package:client_vkr/feature/lessons/ui/components/filter_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'components/lesson_builder.dart';
-part 'lesson_done_screen.dart';
+part 'lesson_builder.dart';
 
 class LessonScreen extends StatefulWidget {
   const LessonScreen({super.key, required this.userEntity});
@@ -28,7 +27,7 @@ class _LessonScreenState extends State<LessonScreen> {
   @override
   void initState() {
     super.initState();
-    locator.get<LessonCubit>().getLessons();
+    locator.get<LessonCubit>().init();
   }
 
   @override

@@ -2,9 +2,11 @@ part of 'lesson_cubit.dart';
 
 @freezed
 class LessonState with _$LessonState {
-  const factory LessonState.initial() = _Initial;
-  const factory LessonState.loading() = _LoadingLessonState;
-  const factory LessonState.done(
-      List<LessonEntity> listLesson, String dateStart) = _DoneLessonState;
-  const factory LessonState.error(String message) = _ErrorLessonState;
+  const factory LessonState({
+    @Default(AsyncSnapshot.nothing()) AsyncSnapshot asyncSnapshot,
+    required List<LessonEntity> listLesson,
+    FilterEntity? filterEntity,
+    @Default([]) List<String> listLessonType,
+    @Default([]) List<String> listGroup,
+  }) = _LessonState;
 }

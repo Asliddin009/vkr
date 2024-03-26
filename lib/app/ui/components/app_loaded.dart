@@ -10,7 +10,7 @@ class AppLoader extends StatelessWidget {
       body: Center(
         child: SpinKitDancingSquare(
           color: Colors.blueAccent.shade400,
-          size: 100.0,
+          size: 250.0,
         ),
       ),
     );
