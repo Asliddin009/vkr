@@ -84,4 +84,8 @@ abstract class Utils {
       (_) => "Декабря"
     };
   }
+
+  static bool compareGroups(List<String> filterList, List<String> totalList) {
+    return filterList.every((element) => totalList.contains(element));
+  }
 }

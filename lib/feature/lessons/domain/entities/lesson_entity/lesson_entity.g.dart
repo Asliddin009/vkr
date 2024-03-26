@@ -16,6 +16,7 @@ _$LessonEntityImpl _$$LessonEntityImplFromJson(Map<String, dynamic> json) =>
       endLesson: json['EndLesson'] as String?,
       kindOfWork: json['KindOfWork'] as String?,
       lessonType: json['LessonType'] as String?,
+      contentTableOfLessonsName: json['ContentTableOfLessonsName'] as int?,
       group: (json['Group'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
@@ -29,5 +30,6 @@ Map<String, dynamic> _$$LessonEntityImplToJson(_$LessonEntityImpl instance) =>
       'EndLesson': instance.endLesson,
       'KindOfWork': instance.kindOfWork,
       'LessonType': instance.lessonType,
+      'ContentTableOfLessonsName': instance.contentTableOfLessonsName,
       'Group': instance.group,
     };

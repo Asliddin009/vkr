@@ -20,10 +20,10 @@ class LessonBuilder extends StatelessWidget {
         }
         return Scaffold(
             key: _scaffoldKey,
+            backgroundColor: Colors.white,
             drawer: AppFilterDrawer(
               state: state,
             ),
-            backgroundColor: Colors.white,
             appBar: AppBar(
               leading: Padding(
                 padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
@@ -61,10 +61,9 @@ class LessonBuilder extends StatelessWidget {
                 ),
               ],
             ),
-            body: SingleChildScrollView(
-              child: AppContainer(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                height: state.listLesson.length * 170 + 6 * 50,
+            body: Padding(
+              padding: const EdgeInsets.all(16),
+              child: SingleChildScrollView(
                 child: Column(
                   children: getListDayContainer(state.listLesson),
                 ),

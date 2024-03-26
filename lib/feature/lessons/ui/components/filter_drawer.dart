@@ -101,7 +101,11 @@ class AppFilterDrawer extends StatelessWidget {
                     listFilterGroups: state.filterEntity!.listGroups)
               ],
             ),
-            AppTextButton(onPressed: () {}, text: 'Применить')
+            AppTextButton(
+                onPressed: () {
+                  locator.get<LessonCubit>().getLessons();
+                },
+                text: 'Применить')
           ],
         ),
       ),

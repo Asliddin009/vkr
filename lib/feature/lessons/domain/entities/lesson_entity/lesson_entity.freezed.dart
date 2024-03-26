@@ -36,6 +36,8 @@ mixin _$LessonEntity {
   String? get kindOfWork => throw _privateConstructorUsedError;
   @JsonKey(name: 'LessonType')
   String? get lessonType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentTableOfLessonsName')
+  int? get contentTableOfLessonsName => throw _privateConstructorUsedError;
   @JsonKey(name: 'Group')
   List<String> get group => throw _privateConstructorUsedError;
 
@@ -60,6 +62,8 @@ abstract class $LessonEntityCopyWith<$Res> {
       @JsonKey(name: 'EndLesson') String? endLesson,
       @JsonKey(name: 'KindOfWork') String? kindOfWork,
       @JsonKey(name: 'LessonType') String? lessonType,
+      @JsonKey(name: 'ContentTableOfLessonsName')
+      int? contentTableOfLessonsName,
       @JsonKey(name: 'Group') List<String> group});
 }
 
@@ -84,6 +88,7 @@ class _$LessonEntityCopyWithImpl<$Res, $Val extends LessonEntity>
     Object? endLesson = freezed,
     Object? kindOfWork = freezed,
     Object? lessonType = freezed,
+    Object? contentTableOfLessonsName = freezed,
     Object? group = null,
   }) {
     return _then(_value.copyWith(
@@ -119,6 +124,10 @@ class _$LessonEntityCopyWithImpl<$Res, $Val extends LessonEntity>
           ? _value.lessonType
           : lessonType // ignore: cast_nullable_to_non_nullable
               as String?,
+      contentTableOfLessonsName: freezed == contentTableOfLessonsName
+          ? _value.contentTableOfLessonsName
+          : contentTableOfLessonsName // ignore: cast_nullable_to_non_nullable
+              as int?,
       group: null == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
@@ -144,6 +153,8 @@ abstract class _$$LessonEntityImplCopyWith<$Res>
       @JsonKey(name: 'EndLesson') String? endLesson,
       @JsonKey(name: 'KindOfWork') String? kindOfWork,
       @JsonKey(name: 'LessonType') String? lessonType,
+      @JsonKey(name: 'ContentTableOfLessonsName')
+      int? contentTableOfLessonsName,
       @JsonKey(name: 'Group') List<String> group});
 }
 
@@ -166,6 +177,7 @@ class __$$LessonEntityImplCopyWithImpl<$Res>
     Object? endLesson = freezed,
     Object? kindOfWork = freezed,
     Object? lessonType = freezed,
+    Object? contentTableOfLessonsName = freezed,
     Object? group = null,
   }) {
     return _then(_$LessonEntityImpl(
@@ -201,6 +213,10 @@ class __$$LessonEntityImplCopyWithImpl<$Res>
           ? _value.lessonType
           : lessonType // ignore: cast_nullable_to_non_nullable
               as String?,
+      contentTableOfLessonsName: freezed == contentTableOfLessonsName
+          ? _value.contentTableOfLessonsName
+          : contentTableOfLessonsName // ignore: cast_nullable_to_non_nullable
+              as int?,
       group: null == group
           ? _value._group
           : group // ignore: cast_nullable_to_non_nullable
@@ -221,6 +237,8 @@ class _$LessonEntityImpl implements _LessonEntity {
       @JsonKey(name: 'EndLesson') this.endLesson,
       @JsonKey(name: 'KindOfWork') this.kindOfWork,
       @JsonKey(name: 'LessonType') this.lessonType,
+      @JsonKey(name: 'ContentTableOfLessonsName')
+      this.contentTableOfLessonsName,
       @JsonKey(name: 'Group') required final List<String> group})
       : _group = group;
 
@@ -251,6 +269,9 @@ class _$LessonEntityImpl implements _LessonEntity {
   @override
   @JsonKey(name: 'LessonType')
   final String? lessonType;
+  @override
+  @JsonKey(name: 'ContentTableOfLessonsName')
+  final int? contentTableOfLessonsName;
   final List<String> _group;
   @override
   @JsonKey(name: 'Group')
@@ -262,7 +283,7 @@ class _$LessonEntityImpl implements _LessonEntity {
 
   @override
   String toString() {
-    return 'LessonEntity(id: $id, name: $name, date: $date, auditorium: $auditorium, startLesson: $startLesson, endLesson: $endLesson, kindOfWork: $kindOfWork, lessonType: $lessonType, group: $group)';
+    return 'LessonEntity(id: $id, name: $name, date: $date, auditorium: $auditorium, startLesson: $startLesson, endLesson: $endLesson, kindOfWork: $kindOfWork, lessonType: $lessonType, contentTableOfLessonsName: $contentTableOfLessonsName, group: $group)';
   }
 
   @override
@@ -283,6 +304,9 @@ class _$LessonEntityImpl implements _LessonEntity {
                 other.kindOfWork == kindOfWork) &&
             (identical(other.lessonType, lessonType) ||
                 other.lessonType == lessonType) &&
+            (identical(other.contentTableOfLessonsName,
+                    contentTableOfLessonsName) ||
+                other.contentTableOfLessonsName == contentTableOfLessonsName) &&
             const DeepCollectionEquality().equals(other._group, _group));
   }
 
@@ -298,6 +322,7 @@ class _$LessonEntityImpl implements _LessonEntity {
       endLesson,
       kindOfWork,
       lessonType,
+      contentTableOfLessonsName,
       const DeepCollectionEquality().hash(_group));
 
   @JsonKey(ignore: true)
@@ -324,6 +349,8 @@ abstract class _LessonEntity implements LessonEntity {
           @JsonKey(name: 'EndLesson') final String? endLesson,
           @JsonKey(name: 'KindOfWork') final String? kindOfWork,
           @JsonKey(name: 'LessonType') final String? lessonType,
+          @JsonKey(name: 'ContentTableOfLessonsName')
+          final int? contentTableOfLessonsName,
           @JsonKey(name: 'Group') required final List<String> group}) =
       _$LessonEntityImpl;
 
@@ -354,6 +381,9 @@ abstract class _LessonEntity implements LessonEntity {
   @override
   @JsonKey(name: 'LessonType')
   String? get lessonType;
+  @override
+  @JsonKey(name: 'ContentTableOfLessonsName')
+  int? get contentTableOfLessonsName;
   @override
   @JsonKey(name: 'Group')
   List<String> get group;

@@ -16,6 +16,7 @@ class LessonEntity with _$LessonEntity {
     @JsonKey(name: 'EndLesson') String? endLesson,
     @JsonKey(name: 'KindOfWork') String? kindOfWork,
     @JsonKey(name: 'LessonType') String? lessonType,
+    @JsonKey(name: 'ContentTableOfLessonsName') int? contentTableOfLessonsName,
     @JsonKey(name: 'Group') required List<String> group,
   }) = _LessonEntity;
 

@@ -16,6 +16,7 @@ class ScaffoldFullQrCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       body: AppContainer(
         height: double.infinity,
         margin: const EdgeInsets.all(50),

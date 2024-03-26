@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
-import 'package:client_vkr/app/utils/utils.dart';
 import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/filter_entity/filter_entity.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
@@ -38,9 +36,11 @@ class LessonCubit extends Cubit<LessonState> {
     emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
     final listLessonType = await repo.getLessonTypeList();
     final listGroup = await repo.getGroupList();
-    getLessons();
     final filterEntity = FilterEntity.getDefaulValue();
+    final lessons = await repo.getLessons(filterEntity);
     emit(state.copyWith(
+        asyncSnapshot: const AsyncSnapshot.withData(ConnectionState.done, null),
+        listLesson: lessons,
         listLessonType: listLessonType,
         listGroup: listGroup,
         filterEntity: filterEntity));
@@ -49,9 +49,7 @@ class LessonCubit extends Cubit<LessonState> {
   void getLessons() async {
     emit(state.copyWith(asyncSnapshot: const AsyncSnapshot.waiting()));
     try {
-      final startDate = Utils.getStartDate();
-      final endDate = Utils.getEndDate();
-      final lessons = await repo.getLessons(startDate, endDate);
+      final lessons = await repo.getLessons(state.filterEntity!);
       emit(state.copyWith(
           listLesson: lessons,
           asyncSnapshot:

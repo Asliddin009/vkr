@@ -24,6 +24,7 @@ class ScaffoldDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -32,7 +33,6 @@ class ScaffoldDetailScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   LessonContainer(
-                    onTapActivate: false,
                     lessonEntity: lessonEntity,
                   ),
                   Padding(
