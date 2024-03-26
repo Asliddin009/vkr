@@ -5,7 +5,6 @@ import 'package:client_vkr/app/ui/components/app_text_button.dart';
 import 'package:client_vkr/app/ui/components/app_text_field.dart';
 import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
-import 'package:client_vkr/feature/lessons/ui/components/lesson_container.dart';
 import 'package:client_vkr/feature/detail_lesson/ui/components/list_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,129 +24,93 @@ class ScaffoldDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
-      body: SingleChildScrollView(
-        child: Column(
+      body: Container(
+        margin: const EdgeInsets.only(top: 25, bottom: 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Stack(
-                children: [
-                  LessonContainer(
-                    lessonEntity: lessonEntity,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        right: MediaQuery.sizeOf(context).width / 10, top: 20),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: SizedBox(
-                        height: 40,
-                        width: 130,
-                        child: AppTextButton(
-                            onPressed: () {
-                              context
-                                  .read<DetailLessonCubit>()
-                                  .finishListenQrCode();
-                              Navigator.pop(context);
-                            },
-                            text: ('Вернуться')),
-                      ),
-                    ),
-                  ),
-                ],
+            Expanded(
+              flex: 6,
+              child: AppContainer(
+                margin: const EdgeInsets.all(25),
+                child: switch (state.bodyState) {
+                  (BodyState.qrCode) => _QrCode(state: state),
+                  (BodyState.addUser) => _AddUserForm(),
+                  (BodyState.list) => _ListWidget(state: state),
+                  _ => _QrCode(state: state),
+                },
               ),
             ),
-            SizedBox(
-              height: 555,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 6,
-                    child: AppContainer(
-                      margin: const EdgeInsets.all(25),
-                      child: switch (state.bodyState) {
-                        (BodyState.qrCode) => _QrCode(state: state),
-                        (BodyState.addUser) => _AddUserForm(),
-                        (BodyState.list) => _ListWidget(state: state),
-                        _ => const _InitWidget(),
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: AppContainer(
-                      margin: const EdgeInsets.all(25),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 15, right: 10, left: 10),
-                        child: Column(
-                          children: [
-                            context.read<DetailLessonCubit>().isWork
-                                ? AppTextButton(
-                                    onPressed: () {
-                                      context.read<DetailLessonCubit>()
-                                        ..emitNewBodyState(BodyState.qrCode)
-                                        ..finishListenQrCode();
-                                    },
-                                    text: 'Скрыть Qr Code',
-                                    buttonStyle: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.green),
-                                    ))
-                                : AppTextButton(
-                                    onPressed: () {
-                                      context.read<DetailLessonCubit>()
-                                        ..emitNewBodyState(BodyState.qrCode)
-                                        ..startListenQrCode();
-                                    },
-                                    text: 'Показать Qr Code'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            AppTextButton(
-                                onPressed: () {
-                                  final cubit =
-                                      context.read<DetailLessonCubit>();
-                                  final list =
-                                      state.lessonStudentsEntity?.listStudent ??
-                                          [];
-                                  if (list.isEmpty) {
-                                    cubit.getLessonStudents(context: context);
-                                  }
-                                  cubit.emitNewBodyState(BodyState.list);
-                                },
-                                text: 'Показать Список студентов'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            AppTextButton(
-                                onPressed: () {
-                                  context
-                                      .read<DetailLessonCubit>()
-                                      .emitNewBodyState(BodyState.addUser);
-                                },
-                                text: 'Добавить Студента на пару'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            AppTextButton(
-                                onPressed: () {
-                                  context
-                                      .read<DetailLessonCubit>()
-                                      .emitNewBodyState(BodyState.init);
-                                },
-                                text: 'Показать Инструкцию'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
+            Expanded(
+              flex: 2,
+              child: AppContainer(
+                margin: const EdgeInsets.all(25),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
+                  child: Column(
+                    children: [
+                      context.read<DetailLessonCubit>().isWork
+                          ? AppTextButton(
+                              onPressed: () {
+                                context.read<DetailLessonCubit>()
+                                  ..emitNewBodyState(BodyState.qrCode)
+                                  ..finishListenQrCode();
+                              },
+                              text: 'Скрыть Qr Code',
+                              buttonStyle: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.green),
+                              ))
+                          : AppTextButton(
+                              onPressed: () {
+                                context.read<DetailLessonCubit>()
+                                  ..emitNewBodyState(BodyState.qrCode)
+                                  ..startListenQrCode()
+                                  ..getLessonStudents(context: context);
+                              },
+                              text: 'Показать Qr Code'),
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
+                      AppTextButton(
+                          onPressed: () {
+                            final cubit = context.read<DetailLessonCubit>();
+                            final list =
+                                state.lessonStudentsEntity?.listStudent ?? [];
+                            if (list.isEmpty) {
+                              cubit.getLessonStudents(context: context);
+                            }
+                            cubit.emitNewBodyState(BodyState.list);
+                          },
+                          text: 'Показать Список студентов'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      AppTextButton(
+                          onPressed: () {
+                            context
+                                .read<DetailLessonCubit>()
+                                .emitNewBodyState(BodyState.addUser);
+                          },
+                          text: 'Добавить Студента на пару'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      AppTextButton(
+                          onPressed: () {
+                            context
+                                .read<DetailLessonCubit>()
+                                .finishListenQrCode();
+                            Navigator.pop(context);
+                          },
+                          text: ('Вернуться')),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ],
@@ -205,17 +168,6 @@ class _AddUserForm extends StatelessWidget {
   }
 }
 
-class _InitWidget extends StatelessWidget {
-  const _InitWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Инструкция скоро будет'),
-    );
-  }
-}
-
 class _ListWidget extends StatelessWidget {
   const _ListWidget({required this.state});
   final DetailLessonState state;
@@ -268,7 +220,9 @@ class _QrCode extends StatelessWidget {
                   )
                 : GestureDetector(
                     onDoubleTap: () {
-                      context.read<DetailLessonCubit>().openQrCodeFull();
+                      context.read<DetailLessonCubit>()
+                        ..getLessonStudents(context: context)
+                        ..openQrCodeFull();
                     },
                     child: SizedBox(
                       height: 200,

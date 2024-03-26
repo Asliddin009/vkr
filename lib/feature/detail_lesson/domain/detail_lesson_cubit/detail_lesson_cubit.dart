@@ -21,7 +21,6 @@ class DetailLessonCubit extends Cubit<DetailLessonState> {
   void startListenQrCode() async {
     isWork = true;
     _getQrCodeUrl();
-    getLessonStudents();
 
     timerUpdate ??= Timer.periodic(const Duration(seconds: 1), (timer) {
       emit(state.copyWith(timer: state.timer - 1));
