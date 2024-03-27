@@ -31,7 +31,6 @@ dependencies:
   flutter_spinkit: ^5.2.0
   another_flushbar: ^1.12.30
   date_picker_plus: ^3.0.0
-  flutter_adaptive_ui: ^0.8.0+1
 
   #Qr-code
   pretty_qr_code: ^3.3.0

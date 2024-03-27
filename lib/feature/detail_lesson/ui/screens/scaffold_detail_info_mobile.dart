@@ -169,10 +169,16 @@ class _ListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (state.asyncSnapshot) {
-      (const AsyncSnapshot.waiting()) => SpinKitDancingSquare(
-          color: Colors.blueAccent.shade400,
-          size: 200.0,
-        ),
+      (const AsyncSnapshot.waiting()) => MediaQuery.sizeOf(context).width <= 600
+          ? Center(
+              child: CircularProgressIndicator(
+                color: Colors.blueAccent.shade400,
+              ),
+            )
+          : SpinKitDancingSquare(
+              color: Colors.blueAccent.shade400,
+              size: 200.0,
+            ),
       _ => ListStudent(
           list: state.listStudentWidget,
         )
@@ -201,10 +207,16 @@ class _QrCode extends StatelessWidget {
           height: 25,
         ),
         state.asyncSnapshot == const AsyncSnapshot.waiting()
-            ? SpinKitDancingSquare(
-                color: Colors.blueAccent.shade400,
-                size: 200.0,
-              )
+            ? MediaQuery.sizeOf(context).width <= 600
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.blueAccent.shade400,
+                    ),
+                  )
+                : SpinKitDancingSquare(
+                    color: Colors.blueAccent.shade400,
+                    size: 200.0,
+                  )
             : state.url == ''
                 ? const SizedBox(
                     height: 200,

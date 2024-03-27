@@ -8,10 +8,16 @@ class AppLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SpinKitDancingSquare(
-          color: Colors.blueAccent.shade400,
-          size: 250.0,
-        ),
+        child: MediaQuery.sizeOf(context).width <= 600
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blueAccent.shade400,
+                ),
+              )
+            : SpinKitDancingSquare(
+                color: Colors.blueAccent.shade400,
+                size: 250.0,
+              ),
       ),
     );
   }

@@ -44,7 +44,7 @@ class ScaffoldFullQrCode extends StatelessWidget {
             backgroundColor: Colors.grey.shade300,
             body: AppContainer(
               height: double.infinity,
-              margin: const EdgeInsets.all(50),
+              margin: const EdgeInsets.all(15),
               padding: const EdgeInsets.all(25),
               width: double.infinity,
               child: Row(
