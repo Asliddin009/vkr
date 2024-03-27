@@ -1,4 +1,5 @@
 import 'package:client_vkr/app/di/init_di.dart';
+import 'package:client_vkr/app/ui/ui_utils.dart';
 import 'package:client_vkr/feature/lessons/domain/cubit/lesson_cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +21,19 @@ class FilterListLessons extends StatelessWidget {
                       onChanged: (value) {
                         locator.get<LessonCubit>().addFilter(lesson: lesson);
                       }),
-                  SizedBox(
-                      width: MediaQuery.sizeOf(context).width / 5,
-                      child: Text(
-                        lesson,
-                        overflow: TextOverflow.visible,
-                      ))
+                  UtilsUi.isMobileDevice(context)
+                      ? SizedBox(
+                          width: MediaQuery.sizeOf(context).width * 6 / 10,
+                          child: Text(
+                            lesson,
+                            overflow: TextOverflow.ellipsis,
+                          ))
+                      : SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 5,
+                          child: Text(
+                            lesson,
+                            overflow: TextOverflow.visible,
+                          ))
                 ],
               ))
           .toList(),

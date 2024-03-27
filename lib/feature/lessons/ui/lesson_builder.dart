@@ -1,9 +1,22 @@
-part of 'lesson_screen.dart';
+import 'package:client_vkr/app/di/init_di.dart';
+import 'package:client_vkr/app/domain/entities/error_entity/error_entity.dart';
+import 'package:client_vkr/app/ui/components/app_loaded.dart';
+import 'package:client_vkr/app/ui/components/app_snack_bar.dart';
+import 'package:client_vkr/app/ui/ui_utils.dart';
+import 'package:client_vkr/feature/auth/domain/auth_bloc/auth_cubit.dart';
+import 'package:client_vkr/feature/auth/domain/entities/user_entity/user_entity.dart';
+import 'package:client_vkr/feature/lessons/domain/cubit/lesson_cubit.dart';
+import 'package:client_vkr/feature/lessons/ui/components/filter_drawer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'lesson_web.dart';
+part 'lesson_mobile.dart';
 
 class LessonBuilder extends StatelessWidget {
   LessonBuilder({super.key, required this.userEntity});
   final UserEntity userEntity;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,73 +31,65 @@ class LessonBuilder extends StatelessWidget {
         if (state.asyncSnapshot == const AsyncSnapshot.waiting()) {
           return const AppLoader();
         }
-        return Scaffold(
-            key: _scaffoldKey,
-            backgroundColor: Colors.white,
-            drawer: AppFilterDrawer(
-              state: state,
-            ),
-            appBar: AppBar(
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  height: 15,
-                  fit: BoxFit.fitHeight,
+        return UtilsUi.isMobileDevice(context)
+            ? LessonScreenMobile(
+                scaffoldKey: scaffoldKey,
+                state: state,
+                userEntity: userEntity,
+              )
+            : Scaffold(
+                key: scaffoldKey,
+                backgroundColor: Colors.white,
+                drawer: AppFilterDrawer(
+                  state: state,
                 ),
-              ),
-              backgroundColor: Colors.white,
-              title: const Text('Главный экран'),
-              actions: [
-                Text(
-                  userEntity.name,
-                  style: Theme.of(context).textTheme.titleMedium,
+                appBar: AppBar(
+                  leading: Padding(
+                    padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      height: 15,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                  backgroundColor: Colors.white,
+                  title: const Text('Главный экран'),
+                  actions: [
+                    Text(
+                      userEntity.name,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          scaffoldKey.currentState?.openDrawer();
+                        },
+                        child: const Text('Фильтры')),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          locator.get<AuthCubit>().logOut();
+                        },
+                        child: const Text("Выйти")),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  width: 25,
-                ),
-                TextButton(
-                    onPressed: () {
-                      _scaffoldKey.currentState?.openDrawer();
-                    },
-                    child: const Text('Фильтры')),
-                const SizedBox(
-                  width: 10,
-                ),
-                TextButton(
-                    onPressed: () {
-                      locator.get<AuthCubit>().logOut();
-                    },
-                    child: const Text("Выйти")),
-                const SizedBox(
-                  width: 10,
-                ),
-              ],
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(16),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: getListDayContainer(state.listLesson),
-                ),
-              ),
-            ));
+                body: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: UtilsUi.getListDayContainer(
+                          state.listLesson, state.filterEntity!),
+                    ),
+                  ),
+                ));
       },
     );
-  }
-
-  List<Widget> getListDayContainer(List<LessonEntity> listLessons) {
-    DateTime data = Utils.convertStringToDateTime(Utils.getStartDate());
-    List<Widget> list = [];
-    for (int i = 0; i < 6; i++) {
-      final dataString = Utils.convertDateTimeToString(data);
-      list.add(DayContainer(
-          listLessons: listLessons
-              .where((element) => element.date == dataString)
-              .toList(),
-          dateTimeNow: data));
-      data = data.add(const Duration(days: 1));
-    }
-    return list;
   }
 }

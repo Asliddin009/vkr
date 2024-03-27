@@ -83,7 +83,7 @@ List<Widget> getWidgetListFromUserEntity(
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(element.name),
+              SizedBox(width: 150, child: Text(element.name)),
               Row(
                 children: [
                   SizedBoxForCheckbox(

@@ -1,4 +1,5 @@
 import 'package:client_vkr/app/ui/components/app_text.dart';
+import 'package:client_vkr/app/ui/ui_utils.dart';
 import 'package:client_vkr/app/utils/utils.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
 import 'package:client_vkr/feature/lessons/ui/components/lesson_container.dart';
@@ -15,6 +16,7 @@ class DayContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = Utils.getTitleForTimetableTile(dateTimeNow);
     double height = 30 + 90 * listLessons.length.toDouble();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,34 +36,67 @@ class DayContainer extends StatelessWidget {
                   right: 15,
                 ),
                 height: 25,
-                child: Row(
-                  children: [
-                    const Expanded(
-                        flex: 3,
-                        child: AppText(
-                          text: 'Время',
-                        )),
-                    Expanded(child: Container()),
-                    const Expanded(
-                        flex: 30,
-                        child: AppText(
-                          text: 'Дисциплина',
-                        )),
-                    const Expanded(
-                        flex: 3,
-                        child: AppText(
-                          text: 'Поток/Группа',
-                        )),
-                    const Expanded(
-                        flex: 5,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: AppText(
-                            text: 'Кабинет',
-                          ),
-                        )),
-                  ],
-                ),
+                child: UtilsUi.isMobileDevice(context)
+                    ? Row(
+                        children: [
+                          Expanded(
+                              flex: 6,
+                              child: AppText(
+                                  text: 'Время',
+                                  style:
+                                      Theme.of(context).textTheme.labelSmall)),
+                          const Expanded(flex: 3, child: SizedBox()),
+                          Expanded(
+                              flex: 15,
+                              child: AppText(
+                                  text: 'Дисциплина',
+                                  style:
+                                      Theme.of(context).textTheme.labelSmall)),
+                          Expanded(
+                              flex: 6,
+                              child: AppText(
+                                  text: 'Группа',
+                                  style:
+                                      Theme.of(context).textTheme.labelSmall)),
+                          Expanded(
+                              flex: 6,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: AppText(
+                                    text: 'Кабинет',
+                                    style:
+                                        Theme.of(context).textTheme.labelSmall),
+                              )),
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          const Expanded(
+                              flex: 3,
+                              child: AppText(
+                                text: 'Время',
+                              )),
+                          Expanded(child: Container()),
+                          const Expanded(
+                              flex: 30,
+                              child: AppText(
+                                text: 'Дисциплина',
+                              )),
+                          const Expanded(
+                              flex: 3,
+                              child: AppText(
+                                text: 'Поток/Группа',
+                              )),
+                          const Expanded(
+                              flex: 5,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: AppText(
+                                  text: 'Кабинет',
+                                ),
+                              )),
+                        ],
+                      ),
               ),
         SizedBox(
           height: height,

@@ -1,4 +1,5 @@
 import 'package:client_vkr/app/ui/components/app_text.dart';
+import 'package:client_vkr/app/ui/ui_utils.dart';
 import 'package:client_vkr/app/utils/color_hex.dart';
 import 'package:client_vkr/feature/detail_lesson/ui/screens/detail_lesson_screen.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
@@ -34,7 +35,7 @@ class LessonContainer extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                    flex: 2,
+                    flex: UtilsUi.isMobileDevice(context) ? 5 : 2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,6 +47,7 @@ class LessonContainer extends StatelessWidget {
                       ],
                     )),
                 Expanded(
+                  flex: UtilsUi.isMobileDevice(context) ? 3 : 1,
                   child: Container(
                     margin: const EdgeInsets.only(right: 10.0),
                     width: 10,
@@ -67,7 +69,7 @@ class LessonContainer extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    flex: 30,
+                    flex: UtilsUi.isMobileDevice(context) ? 15 : 30,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: AppText(
@@ -75,14 +77,14 @@ class LessonContainer extends StatelessWidget {
                       ),
                     )),
                 Expanded(
-                    flex: 3,
+                    flex: UtilsUi.isMobileDevice(context) ? 6 : 3,
                     child: AppText(
                         text: lessonEntity.group
                             .map((e) => "$e ")
                             .join(", ")
                             .toString())),
                 Expanded(
-                    flex: 5,
+                    flex: UtilsUi.isMobileDevice(context) ? 6 : 5,
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: AppText(

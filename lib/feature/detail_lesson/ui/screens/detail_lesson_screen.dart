@@ -1,8 +1,10 @@
 import 'package:client_vkr/app/di/init_di.dart';
 import 'package:client_vkr/app/domain/entities/error_entity/error_entity.dart';
 import 'package:client_vkr/app/ui/components/app_snack_bar.dart';
+import 'package:client_vkr/app/ui/ui_utils.dart';
 import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_cubit/detail_lesson_cubit.dart';
 import 'package:client_vkr/feature/detail_lesson/domain/detail_lesson_repo.dart';
+import 'package:client_vkr/feature/detail_lesson/ui/screens/scaffold_detail_info_mobile.dart';
 import 'package:client_vkr/feature/lessons/domain/entities/lesson_entity/lesson_entity.dart';
 import 'package:client_vkr/feature/detail_lesson/ui/screens/scaffold_detail_info.dart';
 import 'package:client_vkr/feature/detail_lesson/ui/screens/scaffold_full_qr_code.dart';
@@ -33,10 +35,13 @@ class _DetailLessonScreen extends StatelessWidget {
             ? ScaffoldFullQrCode(
                 state: state,
               )
-            : ScaffoldDetailScreen(
-                lessonEntity: lessonEntity,
-                state: state,
-              );
+            : UtilsUi.isMobileDevice(context)
+                ? ScaffoldDetailScreenMobile(
+                    lessonEntity: lessonEntity, state: state)
+                : ScaffoldDetailScreen(
+                    lessonEntity: lessonEntity,
+                    state: state,
+                  );
       },
       listener: (BuildContext context, DetailLessonState state) {
         if (state.asyncSnapshot.hasData) {
